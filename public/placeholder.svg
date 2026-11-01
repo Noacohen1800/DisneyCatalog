@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="#e8e4f3"/>
+  <circle cx="100" cy="82" r="34" fill="#b9b0d6"/>
+  <circle cx="62" cy="48" r="20" fill="#b9b0d6"/>
+  <circle cx="138" cy="48" r="20" fill="#b9b0d6"/>
+  <text x="100" y="160" font-family="system-ui, sans-serif" font-size="16" fill="#6f6699" text-anchor="middle">No image</text>
+</svg>

@@ -1,0 +1,21 @@
+.character-grid {
+  display: grid;
+  /* As many 180px-wide columns as fit on the screen */
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+/* Phones: always two columns */
+@media (max-width: 480px) {
+  .character-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+/* Very narrow screens: one column */
+@media (max-width: 320px) {
+  .character-grid {
+    grid-template-columns: 1fr;
+  }
+}

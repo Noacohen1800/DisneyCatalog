@@ -467,3 +467,25 @@
 > </pasted_content id="c125">
 > 
 > .   Don't start coding or implementing anything yet.
+
+## 2026-11-02
+
+**00:44 · claude**
+
+> <ide_opened_file>The user opened the file c:\Users\User\OneDrive\לימודים\סמסטר ג\פיתוח WEB ושימוש בAI\DisneyCatalog\tasks.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+> 
+> 
+> <pasted_content id="c125">
+> Read PRD.md and tasks.md, then implement **Task 1 only**.
+> 
+> Follow the existing project requirements and keep the implementation simple and beginner-friendly.
+> 
+> Do not start any other tasks or modify PROMPTS.md manually, as prompt logging is handled automatically.
+> 
+> When finished, run `npm run build` and explain briefly what you implemented and which files you created.
+> 
+> Do not commit or push.
+> </pasted_content id="c125">
+
+Task 1 – Personal Review:
+I checked that the website runs correctly, displays all six sample characters, and shows a placeholder for a character with a missing image. I also reviewed the basic layout and confirmed that the project builds successfully. I did not make any code changes myself.

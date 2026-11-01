@@ -1,0 +1,183 @@
+[
+  {
+    "_id": 4703,
+    "films": [
+      "Fantasia",
+      "Fun and Fancy Free",
+      "Disney's Sing-Along Songs: The Twelve Days of Christmas",
+      "Mickey's Once Upon a Christmas",
+      "Fantasia 2000"
+    ],
+    "shortFilms": [],
+    "tvShows": [
+      "Walt Disney anthology series",
+      "The Mickey Mouse Club",
+      "The Mouse Factory",
+      "Mickey's Fun Songs",
+      "Mickey Mouse Works"
+    ],
+    "videoGames": [
+      "Mickey Mousecapade",
+      "Adventures in the Magic Kingdom",
+      "Illusion (series)",
+      "The Magical Quest starring Mickey Mouse",
+      "Mickey Mania: The Timeless Adventures of Mickey Mouse"
+    ],
+    "parkAttractions": [
+      "Mickey and Minnie's Runaway Railway",
+      "Fantasmic!",
+      "Mickey's PhilharMagic",
+      "Mickey's Royal Friendship Faire",
+      "World of Color"
+    ],
+    "allies": [],
+    "enemies": [],
+    "name": "Mickey Mouse",
+    "imageUrl": "https://static.wikia.nocookie.net/disney/images/2/2e/Disney_Mickey_Mouse.png"
+  },
+  {
+    "_id": 2099,
+    "films": [
+      "Frozen",
+      "Frozen II",
+      "Frozen III",
+      "Frozen IV",
+      "Ralph Breaks the Internet"
+    ],
+    "shortFilms": [
+      "Frozen Fever",
+      "Olaf's Frozen Adventure",
+      "Once Upon a Studio"
+    ],
+    "tvShows": [
+      "Sofia the First",
+      "Frozen: Northern Lights"
+    ],
+    "videoGames": [
+      "Frozen Free Fall",
+      "Disney Infinity (series)",
+      "Hidden Worlds",
+      "Club Penguin",
+      "Disney Magical World 2"
+    ],
+    "parkAttractions": [
+      "World of Color",
+      "Disney Dreams!",
+      "Celebrate the Magic",
+      "Festival of Fantasy Parade",
+      "Princess Pavilion"
+    ],
+    "allies": [],
+    "enemies": [],
+    "name": "Elsa",
+    "imageUrl": "https://static.wikia.nocookie.net/disney/images/9/95/Profile_-_Elsa.jpeg"
+  },
+  {
+    "_id": 6448,
+    "films": [
+      "Lilo & Stitch",
+      "Stitch! The Movie",
+      "Lilo & Stitch 2: Stitch Has a Glitch",
+      "Once Upon a Halloween",
+      "Leroy & Stitch"
+    ],
+    "shortFilms": [
+      "The Origin of Stitch",
+      "Once Upon a Studio"
+    ],
+    "tvShows": [
+      "Lilo & Stitch: The Series",
+      "Stitch!",
+      "Stitch & Ai",
+      "A Poem Is...",
+      "Chibi Tiny Tales"
+    ],
+    "videoGames": [
+      "Lilo & Stitch (Game Boy Advance)",
+      "Lilo & Stitch Pinball",
+      "Lilo & Stitch: Trouble in Paradise",
+      "Lilo & Stitch: Hawaiian Adventure",
+      "Disney's Stitch: Experiment 626"
+    ],
+    "parkAttractions": [
+      "Stitch's Great Escape!",
+      "Stitch's Supersonic Celebration",
+      "Fantasmic!",
+      "The Enchanted Tiki Room: Stitch Presents Aloha e Komo Mai!",
+      "Stitch Encounter"
+    ],
+    "allies": [],
+    "enemies": [],
+    "name": "Stitch",
+    "imageUrl": "https://static.wikia.nocookie.net/disney/images/b/b7/Profile_-_Stitch.jpg"
+  },
+  {
+    "_id": 7026,
+    "films": [
+      "The Little Mermaid (1989 film)",
+      "Mickey's Magical Christmas: Snowed in at the House of Mouse",
+      "Mickey's House of Villains",
+      "Once Upon a Halloween"
+    ],
+    "shortFilms": [
+      "The Simpsons: Welcome to the Club",
+      "Once Upon a Studio"
+    ],
+    "tvShows": [
+      "The Little Mermaid (TV series)",
+      "House of Mouse",
+      "The Wonderful World of Disney: The Little Mermaid Live!",
+      "The Wonderful World of Mickey Mouse"
+    ],
+    "videoGames": [
+      "The Little Mermaid (video game)",
+      "Ariel: The Little Mermaid",
+      "The Little Mermaid 2: Pinball Frenzy",
+      "Kingdom Hearts (series)",
+      "Disney Princess (video game)"
+    ],
+    "parkAttractions": [
+      "Fantasmic!",
+      "Disney's Fantillusion",
+      "Voyage of the Little Mermaid",
+      "The Little Mermaid: Ariel's Undersea Adventure",
+      "Starlight Dreams"
+    ],
+    "allies": [],
+    "enemies": [],
+    "name": "Ursula",
+    "imageUrl": "https://static.wikia.nocookie.net/disney/images/7/72/Profile_-_Ursula.jpeg"
+  },
+  {
+    "_id": 112,
+    "films": [
+      "Hercules (film)"
+    ],
+    "shortFilms": [],
+    "tvShows": [
+      "Hercules (TV series)"
+    ],
+    "videoGames": [
+      "Kingdom Hearts III"
+    ],
+    "parkAttractions": [],
+    "allies": [],
+    "enemies": [],
+    "name": "Achilles",
+    "imageUrl": "https://static.wikia.nocookie.net/disney/images/6/67/HATS_Achilles.png"
+  },
+  {
+    "_id": 18,
+    "films": [
+      "The Fox and the Hound",
+      "The Fox and the Hound 2"
+    ],
+    "shortFilms": [],
+    "tvShows": [],
+    "videoGames": [],
+    "parkAttractions": [],
+    "allies": [],
+    "enemies": [],
+    "name": "Abigail the Cow"
+  }
+]
