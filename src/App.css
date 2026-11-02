@@ -11,6 +11,41 @@
   color: var(--accent);
 }
 
+/* Loading and error messages */
+.status-message {
+  margin: 24px 0;
+  text-align: center;
+}
+
+.status-message p {
+  margin: 0 0 12px;
+}
+
+.status-message--error {
+  color: var(--error);
+}
+
+.load-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.button {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.button:hover {
+  opacity: 0.9;
+}
+
 /* Full-page error for a character id that doesn't exist */
 .not-found {
   display: flex;

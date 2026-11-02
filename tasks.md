@@ -38,12 +38,14 @@ Build in this order, one task at a time, with one commit per task (including `PR
 ## Task 3 · Load real characters from the API
 - **First, check the real API before writing any code:** open the list, page 2, a search, and a single character in the browser, and compare the actual response (field names, the `info` section, how pages work) with the PRD. Update the types and the PRD if anything is different.
 - Replace the sample JSON with data from the Disney API, using fetch inside useEffect. Ask for 50 characters per page.
+- Keep only characters with at least one non-blank item in `films` or `tvShows` (a helper in its own file), on the first page and on every page loaded later. If a whole page is filtered out, load the next one automatically.
+- Show the Mickey silhouette placeholder when a character has no image, when the image fails to load, or when the image server sends its 300×171 "not found" picture (confirmed with a HEAD request, so a real image of that size is kept).
 - Write types for the API response (the list of characters and the `info` section), based on what the real API returned.
 - Show three states: a loading message, an error message if the request fails, and the grid on success.
 - Add the "Load more" button, which adds the next page below the current list. Don't assume a page always has exactly 50 characters: show however many come back, and decide whether to show "Load more" from the `info` section (for example `nextPage`), not from counting cards. Make sure the same character isn't added twice.
 - For `/characters/:id`, if the character isn't in the loaded list, load it from the API by the id from useParams (with its own loading and error states) and show it expanded at the top of the grid, so a pasted link works even for characters that haven't been loaded yet. If the API has no character with that id, show the full-page "Character not found" message.
 
-**Done when:** the real API response was checked and the types match it, the catalog shows the first page of real characters, "Load more" adds the next page without removing the first ones and disappears on the last page, turning off the internet shows the error message, a pasted `/characters/<id>` link for any character opens that character's expanded card, and a non-existent id shows the full-page error.
+**Done when:** the real API response was checked and the types match it, the catalog shows the first page of real characters and every card has at least one film or TV show, missing or broken images show the Mickey placeholder, "Load more" adds the next page without removing the first ones and disappears on the last page, turning off the internet shows the error message, a pasted `/characters/<id>` link for any character opens that character's expanded card, and a non-existent id shows the full-page error.
 
 ## Task 4 · Set up tests
 - Install Vitest, React Testing Library, and `@vitest/ui`. Add the `test` and `test:ui` scripts.

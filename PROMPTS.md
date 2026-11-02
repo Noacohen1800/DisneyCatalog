@@ -522,3 +522,20 @@ The implementation was updated accordingly. The character card now expands in pl
 - The project builds successfully and the linter passes.
 I also updated PRD.md and tasks.md to match the new implementation. No application code changes were made by me personally.
 ######################################
+
+**14:06 · claude**
+
+> Read PRD.md and tasks.md, then implement Task 3 only. Follow the existing project requirements and keep the implementation simple and beginner-friendly. Do not start any other tasks or modify PROMPTS.md manually, as prompt logging is handled automatically. explain what you implemented, which files you changed, and how I can test the API integration manually. Do not commit or push.
+
+**14:35 · claude**
+
+> Please make the missing-image experience consistent across the entire app. Whenever a character has no image URL, or its image fails to load, display the same Mickey Mouse silhouette placeholder used in the original sample catalog. Make sure all character cards use this same placeholder. Do not change anything else or start another task. explain what you changed. Do not commit or push.
+
+**14:53 · claude**
+
+> Please improve the character catalog filtering and image fallback behavior. Character filtering: Only display characters that have at least one non-empty item in either films or tvShows. Keep characters that have films only or TV shows only. Exclude characters where both arrays are empty or missing. Image fallback: Review the current 300×171 image-size detection. Improve it if possible so that valid character images are not replaced just because they happen to have those dimensions. Keep the same Mickey silhouette placeholder for missing or broken images. Apply filtering consistently when loading the initial page and when loading additional pages. Make sure pagination still works correctly and Load More continues fetching pages until the API has no more results. Do not start another task or modify unrelated features. Update PRD.md and tasks.md if necessary. Explain what changed and how I can test it manually. Do not commit or push.
+
+#####################################
+**Task 3 – Issues and Fixes:**
+We identified two main issues: the catalog displayed characters with no films or TV shows, and some missing character images appeared as grey error pictures instead of the Mickey placeholder. We fixed this by filtering out characters without any films or TV shows and improving image validation using HEAD requests to check whether suspicious images actually exist. We also ensured pagination continues to work correctly after filtering and updated the project documentation.
+#####################################
