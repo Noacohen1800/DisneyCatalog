@@ -3,6 +3,8 @@
   /* As many 180px-wide columns as fit on the screen */
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 20px;
+  /* If an expanded card leaves an empty spot at the end of a row, a later card fills it */
+  grid-auto-flow: dense;
 }
 
 /* Phones: always two columns */

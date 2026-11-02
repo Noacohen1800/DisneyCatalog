@@ -1,17 +1,16 @@
-import CharacterGrid from './components/CharacterGrid'
-import sampleCharacters from './data/sampleCharacters.json'
-import type { Character } from './types/character'
+import { Navigate, Route, Routes } from 'react-router-dom'
+import CatalogPage from './pages/CatalogPage'
 import './App.css'
-
-// Task 1: sample data from a local file. Task 3 replaces this with the real API.
-const characters: Character[] = sampleCharacters
 
 function App() {
   return (
-    <main className="app">
-      <h1 className="app__title">Disney Catalog</h1>
-      <CharacterGrid characters={characters} />
-    </main>
+    <Routes>
+      <Route path="/" element={<Navigate to="/characters" replace />} />
+      <Route path="/characters" element={<CatalogPage />} />
+      {/* Same page, plus the details pop-up for the character in the URL */}
+      <Route path="/characters/:id" element={<CatalogPage />} />
+      <Route path="*" element={<Navigate to="/characters" replace />} />
+    </Routes>
   )
 }
 

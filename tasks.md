@@ -27,11 +27,13 @@ Build in this order, one task at a time, with one commit per task (including `PR
 ## Task 2 · Click a card to see its details
 - Install React Router. Add the `/characters` route for the catalog page, and send `/` to `/characters`.
 - Make each card a Link to `/characters/<id>`.
-- Add the `/characters/:id` route. It shows the catalog with a reusable **CharacterModal** (details pop-up) component on top of it. The catalog page reads the id with useParams and passes the matching character to the pop-up as a prop.
-- Write a helper function, in its own file, that takes a character and returns only the categories that have data (films, TV shows, video games, allies, enemies, park attractions). The pop-up uses it to hide empty categories.
-- The X button is a Link back to `/characters`. On a phone, the pop-up fills most of the screen and scrolls if the content is long.
+- Add the `/characters/:id` route. It shows the same catalog page, which reads the id with useParams and tells CharacterGrid which card is expanded. That card opens in place (two columns wide, image on the left, details on the right) while the rest of the catalog stays visible, and it scrolls into view.
+- Add a reusable **CharacterDetails** component that gets the character as a prop and shows the Films and TV Shows lists inside the expanded card.
+- Write a helper function, in its own file, that takes a character and returns the Films and TV Shows categories, keeping only the ones that have data. CharacterDetails uses it to hide empty categories.
+- The ✕ button on the expanded card is a Link back to `/characters`, which collapses it. Long lists scroll inside the card. On very narrow screens, the expanded card stacks the image above the details.
+- If the id in the URL matches no character, show a full-page "Character not found" message with a Link back to the catalog, without the catalog behind it.
 
-**Done when:** clicking a card opens the pop-up over the catalog, the URL changes to `/characters/<id>`, empty categories are hidden, X closes it, pasting a `/characters/<id>` URL into a new tab opens the right pop-up, and the pop-up is readable at phone width.
+**Done when:** clicking a card expands it in place with only Films and TV Shows (empty ones hidden), the URL changes to `/characters/<id>`, ✕ collapses it and returns to `/characters`, pasting a `/characters/<id>` URL into a new tab opens the right card, an unknown id shows the full-page error, and the expanded card looks fine at phone width.
 
 ## Task 3 · Load real characters from the API
 - **First, check the real API before writing any code:** open the list, page 2, a search, and a single character in the browser, and compare the actual response (field names, the `info` section, how pages work) with the PRD. Update the types and the PRD if anything is different.
@@ -39,14 +41,14 @@ Build in this order, one task at a time, with one commit per task (including `PR
 - Write types for the API response (the list of characters and the `info` section), based on what the real API returned.
 - Show three states: a loading message, an error message if the request fails, and the grid on success.
 - Add the "Load more" button, which adds the next page below the current list. Don't assume a page always has exactly 50 characters: show however many come back, and decide whether to show "Load more" from the `info` section (for example `nextPage`), not from counting cards. Make sure the same character isn't added twice.
-- The pop-up loads its character from the API by the id from useParams, with its own loading and error states, so a pasted link works even for characters that haven't been loaded yet.
+- For `/characters/:id`, if the character isn't in the loaded list, load it from the API by the id from useParams (with its own loading and error states) and show it expanded at the top of the grid, so a pasted link works even for characters that haven't been loaded yet. If the API has no character with that id, show the full-page "Character not found" message.
 
-**Done when:** the real API response was checked and the types match it, the catalog shows the first page of real characters, "Load more" adds the next page without removing the first ones and disappears on the last page, turning off the internet shows the error message, and a pasted `/characters/<id>` link for any character opens the right pop-up.
+**Done when:** the real API response was checked and the types match it, the catalog shows the first page of real characters, "Load more" adds the next page without removing the first ones and disappears on the last page, turning off the internet shows the error message, a pasted `/characters/<id>` link for any character opens that character's expanded card, and a non-existent id shows the full-page error.
 
 ## Task 4 · Set up tests
 - Install Vitest, React Testing Library, and `@vitest/ui`. Add the `test` and `test:ui` scripts.
 - Write the first 3 tests:
-  1. The categories helper returns only the categories that have items.
+  1. The categories helper returns only Films and TV Shows, and only the ones that have items.
   2. The categories helper doesn't crash when a field is missing from the character.
   3. CharacterCard shows the placeholder image when the character has no image.
 
@@ -63,7 +65,7 @@ Build in this order, one task at a time, with one commit per task (including `PR
 
 ## Task 6 · Favorites page and navigation
 - Write favorites helper functions, in their own file, that add a character, remove a character, and read and save the list in localStorage (id, name, image).
-- Add a reusable **FavoriteButton** (heart) component to every card and to the pop-up. It gets "is this a favorite" and a click handler as props.
+- Add a reusable **FavoriteButton** (heart) component to every card, closed and expanded. It gets "is this a favorite" and a click handler as props.
 - Add a reusable **NavBar** component with NavLink links to Catalog, Favorites, and Random, and highlight the current page. On a phone, the links still fit on one line or wrap neatly.
 - Build the `/favorites` page using the same CharacterGrid, with a friendly message and a Link to the catalog when there are no favorites.
 - Add 3 tests: adding a character, removing a character, and adding the same character twice still keeps only one copy.
@@ -71,23 +73,23 @@ Build in this order, one task at a time, with one commit per task (including `PR
 **Done when:** a filled heart stays filled after a refresh, the character appears on `/favorites`, clicking the heart there removes it, the empty message shows when nothing is saved, the navigation bar works at phone width, and all tests pass (8 so far).
 
 ## Task 7 · Random character page
-- Build the `/random` page. It reads the total number of characters from the API and loads the character at a random position, using fetch inside useEffect, with loading and error states.
+- Build the `/random` page. It reads the total number of characters from the API (`info.totalPages` when asking with `pageSize=1`, since `info.count` is only the current page) and loads the character at a random position, using fetch inside useEffect, with loading and error states.
 - Show the image, name, and FavoriteButton, reusing CharacterCard where possible.
-- Add a "Show another" button that loads a new random character, and a "View details" Link to `/characters/<id>` that opens that character's pop-up.
+- Add a "Show another" button that loads a new random character, and a "View details" Link to `/characters/<id>` that opens that character's expanded card in the catalog.
 - "Show another" must never show the same character twice in a row: the new random position must be different from the current one.
 - Write a helper that picks a random position between 1 and the total, different from the current position. Add 2 tests: its answer always stays inside the range, and it never returns the current position.
 
-**Done when:** `/random` shows a character, clicking "Show another" many times never shows the same character twice in a row, "View details" opens that character's pop-up at `/characters/<id>`, the heart works the same as on the catalog, the page looks fine at phone width, and all tests pass (10 so far).
+**Done when:** `/random` shows a character, clicking "Show another" many times never shows the same character twice in a row, "View details" opens that character's expanded card at `/characters/<id>`, the heart works the same as on the catalog, the page looks fine at phone width, and all tests pass (10 so far).
 
 ## Task 8 · Final check and README
-- Check every page and the pop-up at phone width (about 375px) and fix any layout problems.
+- Check every page and the expanded card at phone width (about 375px) and fix any layout problems.
 - Go through the course requirements one by one:
   - React + Vite + TypeScript, React Router, Vitest, custom CSS, and no backend
   - No `any` anywhere, and types for all API data and props
-  - At least 4 reusable components, each in its own file: CharacterCard, CharacterGrid, CharacterModal, SearchBar, FavoriteButton, NavBar
+  - At least 4 reusable components, each in its own file: CharacterCard, CharacterGrid, CharacterDetails, SearchBar, FavoriteButton, NavBar
   - map with unique keys, data passed through props, useParams for the id, Link/NavLink for navigation
   - fetch inside useEffect, with loading, error, and success states everywhere data is loaded
-  - All pages: `/characters`, `/favorites`, `/random`, and the `/characters/:id` pop-up
+  - All pages: `/characters`, `/favorites`, `/random`, the `/characters/:id` expanded card, and the full-page "Character not found" error
 - Rewrite `README.md`: what the app does, how to install and run it, how to run the tests (`npm test`, `npm run test:ui`), and which API it uses (with the URL).
 
 **Done when:** all PRD acceptance criteria pass by hand, `npm test` shows at least 5 passing tests (10 planned), `npm run test:ui` works, `npm run build` has no errors, every item on the checklist above is true, and the README covers all four topics.

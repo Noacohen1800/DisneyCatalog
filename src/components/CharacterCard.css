@@ -6,6 +6,7 @@
   border-radius: 16px;
   overflow: hidden;
   box-shadow: var(--shadow);
+  text-decoration: none;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -28,4 +29,73 @@
   font-size: 1rem;
   text-align: center;
   color: var(--text-h);
+}
+
+/* ----- Expanded card: takes two columns, image on the left, details on the right ----- */
+
+.character-card--expanded {
+  grid-column: span 2;
+  flex-direction: row;
+  border-color: var(--accent);
+  box-shadow: var(--shadow-hover);
+}
+
+.character-card--expanded:hover {
+  transform: none;
+}
+
+.character-card--expanded .character-card__image {
+  width: 40%;
+  flex-shrink: 0;
+  aspect-ratio: auto;
+}
+
+.character-card__body {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 16px 16px;
+}
+
+.character-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.character-card--expanded .character-card__name {
+  padding: 0;
+  font-size: 1.15rem;
+  text-align: left;
+}
+
+.character-card__close {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--image-bg);
+  color: var(--text-h);
+  text-decoration: none;
+}
+
+.character-card__close:hover {
+  background: var(--border);
+}
+
+/* Very narrow screens: the grid has one column, so the expanded card stacks */
+@media (max-width: 320px) {
+  .character-card--expanded {
+    grid-column: auto;
+    flex-direction: column;
+  }
+
+  .character-card--expanded .character-card__image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+  }
 }

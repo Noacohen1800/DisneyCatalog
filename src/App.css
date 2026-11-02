@@ -10,3 +10,30 @@
   text-align: center;
   color: var(--accent);
 }
+
+/* Full-page error for a character id that doesn't exist */
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 16px;
+  text-align: center;
+}
+
+.not-found__title {
+  margin: 0 0 8px;
+  font-size: 2rem;
+  color: var(--text-h);
+}
+
+.not-found__link {
+  margin-top: 16px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}

@@ -1,0 +1,28 @@
+.character-details {
+  /* Long lists scroll inside the card instead of making it very tall */
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.character-details__section + .character-details__section {
+  margin-top: 12px;
+}
+
+.character-details__title {
+  margin: 0 0 4px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+}
+
+.character-details__list {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 0.9rem;
+}
+
+.character-details__empty {
+  margin: 0;
+  font-size: 0.9rem;
+}
