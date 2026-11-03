@@ -750,3 +750,73 @@ Updated README.md, PRD.md, and tasks.md. Added 4 new tests, bringing the total t
 > **README.md – Final Documentation Review:**
 > Reviewed and polished README.md for consistency and readability. Added a bold label for the responsive and accessibility information, linked React Testing Library documentation, corrected its documentation links, and marked the project structure code block as plain text.
 > Verified all 11 external links and all 3 local documentation links. Checked Markdown formatting, headings, code blocks, and spacing. No other project files or functionality were changed.
+
+**00:58 · claude**
+
+> I want you to perform a final compliance audit of my Disney Catalog project according to the course requirements.
+> Important: This is an inspection-only task. Do not modify, create, delete, or format any files. Do not change the code.
+> Please check the following:
+> 1. Technologies and languages
+>    - Verify that the application source code is written in React with TypeScript.
+>    - Check that components use `.tsx` and TypeScript files use `.ts`.
+>    - Identify any JavaScript (`.js` or `.jsx`) files and explain whether they are configuration files or application source code.
+>    - Verify that CSS is used for styling.
+> 2. TypeScript
+>    - Check that API data and component props have proper TypeScript types or interfaces.
+>    - Search for any use of `any`, including explicit `any` types.
+>    - Report any missing or weak typing.
+> 3. React requirements
+>    - Verify that the project uses React and Vite.
+>    - Check that reusable components are in separate files and that there are at least four user-created reusable components.
+>    - Check that lists use `map()` with unique keys.
+>    - Verify that API requests use `fetch` inside `useEffect`.
+>    - Check that loading and error states are handled.
+> 4. Routing
+>    - Verify that React Router is used.
+>    - Check that the required pages and character detail routes work through separate URLs.
+>    - Check that navigation uses `Link` or `NavLink` where appropriate.
+> 5. Testing
+>    - Verify that Vitest is configured correctly.
+>    - Run all tests and report the exact number of passing and failing tests.
+>    - Check that the test scripts work.
+> 6. Build and project quality
+>    - Run the production build.
+>    - Run the linter, if configured.
+>    - Check for obvious errors or warnings.
+> 7. Responsive design
+>    - Inspect the CSS for desktop and mobile responsiveness.
+>    - Check whether the layout supports small screen widths.
+> Final report:
+> Create a clear checklist with three statuses:
+> - PASS – requirement is satisfied.
+> - WARNING – something needs attention.
+> - FAIL – requirement is not satisfied.
+> For every warning or failure, explain exactly what you found and which file is relevant.
+> Do not make any changes. I only want a report so I can decide whether anything needs fixing.
+
+**01:05 · claude**
+
+> Please make only these two small changes based on the compliance audit:
+> 1. In `tsconfig.app.json`, explicitly add `"strict": true` inside `compilerOptions`, if it is not already there.
+> 2. In `RandomPage.tsx`, move the actual `fetch` call into the `useEffect` body so the course requirement of using `fetch` inside `useEffect` is clearly visible in the code. Preserve the current functionality, loading and error states, random character selection, retry behavior, and existing animations.
+> Important:
+> - Do not change the design or any other functionality.
+> - Do not modify any other files unless absolutely necessary.
+> - Do not change the image-check request in `CharacterCard.tsx`.
+> - Do not delete `sampleCharacters.json`.
+> - Do not add runtime API validation.
+> - Keep the existing TypeScript types and avoid `any`.
+> After making the changes:
+> - Run all tests.
+> - Run the production build.
+> - Run the linter.
+> - Report the results and list every file changed.
+> Do not commit or push.
+
+#######################
+**Final Compliance Fixes:**
+Made two small changes based on the final course requirements review:
+- Added `"strict": true` explicitly to `tsconfig.app.json`.
+- Moved the `fetch` helper inside the `useEffect` in `RandomPage.tsx` to make the API fetching requirement clear.
+Verified that all 79 tests pass, the production build succeeds, and the linter reports no warnings. No design or functionality changes were made.
+#######################

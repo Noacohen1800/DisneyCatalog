@@ -23,15 +23,6 @@ interface RandomPageProps {
   revealDelayMs?: number
 }
 
-// Asks the API for one page and returns its result (throws if the request fails)
-async function fetchPage(url: string): Promise<CharacterListResponse> {
-  const response = await fetch(url)
-  if (!response.ok) {
-    throw new Error(`Request failed with status ${response.status}`)
-  }
-  return response.json()
-}
-
 function wait(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
@@ -56,6 +47,16 @@ function RandomPage({ revealDelayMs = REVEAL_ANIMATION_MS }: RandomPageProps) {
     // Nothing to load until the first click
     if (revealCount === 0) return
     let ignore = false
+
+    // Asks the API for one page and returns its result (throws if the request fails)
+    async function fetchPage(url: string): Promise<CharacterListResponse> {
+      const response = await fetch(url)
+      if (!response.ok) {
+        throw new Error(`Request failed with status ${response.status}`)
+      }
+      const result: CharacterListResponse = await response.json()
+      return result
+    }
 
     async function findRandomCharacter(): Promise<{ found: Character; position: number }> {
       // With one character per page, the number of pages is the number of characters
