@@ -557,3 +557,11 @@ We identified two main issues: the catalog displayed characters with no films or
 #######################
 Updated the catalog to display 4 characters per row and adjusted the expanded card to grow downward within its original column, keeping the other cards in their original positions.
 #######################
+**16:57 · claude**
+
+> Implement Task 4 according to `tasks.md`. Set up Vitest, install `@vitest/ui`, and add the `test:ui` script to `package.json`. Write at least 5 meaningful, non-trivial unit tests that verify real application logic, not just basic rendering or existence checks. Cover relevant functionality such as character filtering, handling empty categories, pagination logic, and random character selection, including edge cases where appropriate. Make sure all tests pass, update the relevant documentation, and do not move on to Task 5.
+
+#######################
+**Task 4 – Testing:**
+Set up Vitest and installed @vitest/ui, jsdom, and React Testing Library. Added 24 meaningful unit tests across 5 test files, covering character filtering, empty categories, pagination, random character selection, and image fallback behavior. Extracted reusable logic into separate helper functions to make it testable. Verified that the tests detect intentional bugs and all 24 pass after restoring the code. The build and linter also pass, with no use of `any`. Tested both the terminal command and the Vitest UI successfully.
+#######################

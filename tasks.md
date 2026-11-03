@@ -48,13 +48,17 @@ Build in this order, one task at a time, with one commit per task (including `PR
 **Done when:** the real API response was checked and the types match it, the catalog shows the first page of real characters and every card has at least one film or TV show, missing or broken images show the Mickey placeholder, "Load more" adds the next page without removing the first ones and disappears on the last page, turning off the internet shows the error message, a pasted `/characters/<id>` link for any character opens that character's expanded card, and a non-existent id shows the full-page error.
 
 ## Task 4 · Set up tests
-- Install Vitest, React Testing Library, and `@vitest/ui`. Add the `test` and `test:ui` scripts.
-- Write the first 3 tests:
-  1. The categories helper returns only Films and TV Shows, and only the ones that have items.
-  2. The categories helper doesn't crash when a field is missing from the character.
-  3. CharacterCard shows the placeholder image when the character has no image.
+- Install Vitest, React Testing Library, jsdom, and `@vitest/ui`. Add the `test` (`vitest run`) and `test:ui` (`vitest --ui`) scripts, and set the test environment to jsdom in `vite.config.ts`.
+- Move the per-page logic of the catalog (filter, "is there a next page", "skip a page that was fully filtered out") into a `processCharacterPage` helper, so it can be tested.
+- Add the `pickRandomPosition` helper now (a pure function, not the Random page itself), so random selection is tested from the start. Task 7 uses it.
+- Write tests for our own logic, next to the files they test:
+  1. **Catalog filter** (`hasFilmsOrTvShows`): keeps films-only and TV-only characters, removes empty, missing, blank-only, and video-games/parks-only characters.
+  2. **Empty categories** (`getCharacterCategories`): returns only Films and TV Shows in order, hides empty ones, removes blank entries, and doesn't crash on missing fields.
+  3. **Pagination** (`addNewCharacters`, `processCharacterPage`): keeps order, skips duplicates, doesn't change React state directly, hides "Load more" on the last page, and loads the next page when a page is fully filtered out.
+  4. **Random selection** (`pickRandomPosition`): always in range, never the current position, correct at the extremes, works with one character, and rejects invalid totals.
+  5. **Image fallback** (`CharacterCard`): placeholder with no URL or after a load error, and the 300×171 check replaces the image only when the server answers "not found".
 
-**Done when:** `npm test` runs and the 3 tests pass, and `npm run test:ui` opens the Vitest UI in the browser.
+**Done when:** `npm test` runs and all tests pass (24 tests in 5 files), `npm run build` still passes, and `npm run test:ui` opens the Vitest UI in the browser.
 
 ## Task 5 · Search by name
 - Add a reusable **SearchBar** component above the grid. It gets the current text and a change handler as props.
@@ -63,7 +67,7 @@ Build in this order, one task at a time, with one commit per task (including `PR
 - Search has its own three states: a loading message while results are on the way, an error message if the search request fails, and the results (or a "No characters found" message when there are no matches). Clearing the search shows the normal list again.
 - Add 2 tests: the helper returns a list unchanged, and it wraps a single character in a list.
 
-**Done when:** searching "Mickey" shows only matching characters, a search with exactly one match still shows one card, a nonsense search shows the "no results" message, a search with the internet off shows the error message, a loading message appears while searching, clearing the box brings the full list back, and all tests pass (5 so far).
+**Done when:** searching "Mickey" shows only matching characters, a search with exactly one match still shows one card, a nonsense search shows the "no results" message, a search with the internet off shows the error message, a loading message appears while searching, clearing the box brings the full list back, and all tests pass.
 
 ## Task 6 · Favorites page and navigation
 - Write favorites helper functions, in their own file, that add a character, remove a character, and read and save the list in localStorage (id, name, image).
@@ -72,16 +76,16 @@ Build in this order, one task at a time, with one commit per task (including `PR
 - Build the `/favorites` page using the same CharacterGrid, with a friendly message and a Link to the catalog when there are no favorites.
 - Add 3 tests: adding a character, removing a character, and adding the same character twice still keeps only one copy.
 
-**Done when:** a filled heart stays filled after a refresh, the character appears on `/favorites`, clicking the heart there removes it, the empty message shows when nothing is saved, the navigation bar works at phone width, and all tests pass (8 so far).
+**Done when:** a filled heart stays filled after a refresh, the character appears on `/favorites`, clicking the heart there removes it, the empty message shows when nothing is saved, the navigation bar works at phone width, and all tests pass.
 
 ## Task 7 · Random character page
 - Build the `/random` page. It reads the total number of characters from the API (`info.totalPages` when asking with `pageSize=1`, since `info.count` is only the current page) and loads the character at a random position, using fetch inside useEffect, with loading and error states.
 - Show the image, name, and FavoriteButton, reusing CharacterCard where possible.
 - Add a "Show another" button that loads a new random character, and a "View details" Link to `/characters/<id>` that opens that character's expanded card in the catalog.
 - "Show another" must never show the same character twice in a row: the new random position must be different from the current one.
-- Write a helper that picks a random position between 1 and the total, different from the current position. Add 2 tests: its answer always stays inside the range, and it never returns the current position.
+- Use the `pickRandomPosition` helper (written and tested in Task 4) to pick a position between 1 and the total that is different from the current one.
 
-**Done when:** `/random` shows a character, clicking "Show another" many times never shows the same character twice in a row, "View details" opens that character's expanded card at `/characters/<id>`, the heart works the same as on the catalog, the page looks fine at phone width, and all tests pass (10 so far).
+**Done when:** `/random` shows a character, clicking "Show another" many times never shows the same character twice in a row, "View details" opens that character's expanded card at `/characters/<id>`, the heart works the same as on the catalog, the page looks fine at phone width, and all tests pass.
 
 ## Task 8 · Final check and README
 - Check every page and the expanded card at phone width (about 375px) and fix any layout problems.
@@ -94,4 +98,4 @@ Build in this order, one task at a time, with one commit per task (including `PR
   - All pages: `/characters`, `/favorites`, `/random`, the `/characters/:id` expanded card, and the full-page "Character not found" error
 - Rewrite `README.md`: what the app does, how to install and run it, how to run the tests (`npm test`, `npm run test:ui`), and which API it uses (with the URL).
 
-**Done when:** all PRD acceptance criteria pass by hand, `npm test` shows at least 5 passing tests (10 planned), `npm run test:ui` works, `npm run build` has no errors, every item on the checklist above is true, and the README covers all four topics.
+**Done when:** all PRD acceptance criteria pass by hand, `npm test` shows at least 5 passing tests (24 after Task 4), `npm run test:ui` works, `npm run build` has no errors, every item on the checklist above is true, and the README covers all four topics.

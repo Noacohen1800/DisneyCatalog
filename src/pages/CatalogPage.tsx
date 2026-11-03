@@ -9,6 +9,7 @@ import type {
 } from '../types/character'
 import { addNewCharacters } from '../utils/addNewCharacters'
 import { hasFilmsOrTvShows } from '../utils/hasFilmsOrTvShows'
+import { processCharacterPage } from '../utils/processCharacterPage'
 
 const API_URL = 'https://api.disneyapi.dev/character'
 const PAGE_SIZE = 50
@@ -41,15 +42,15 @@ function CatalogPage() {
         if (ignore) return
 
         // Keep only characters with at least one film or TV show
-        const visibleCharacters = result.data.filter(hasFilmsOrTvShows)
-        const hasNextPage = result.info.nextPage !== null
+        const { characters: visibleCharacters, hasNextPage, shouldLoadNextPage } =
+          processCharacterPage(result)
 
         // Add them below the current list, without duplicates
         setCharacters((current) => addNewCharacters(current, visibleCharacters))
         // Show "Load more" only if the API says there is a next page
         setHasMore(hasNextPage)
 
-        if (visibleCharacters.length === 0 && hasNextPage) {
+        if (shouldLoadNextPage) {
           // Every character on this page was filtered out: load the next page right away
           setPage((current) => current + 1)
         } else {
