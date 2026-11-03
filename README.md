@@ -13,7 +13,7 @@ It is a front-end only app (no backend, no database). Character data comes from 
 - **Open a character's details**: click a card and it grows downward in place to show its **Films** and **TV Shows** (empty categories are hidden). Each open card has its own URL (`/characters/<id>`), so you can share or reload it. ✕ closes it. An unknown id shows a "Character not found" page.
 - **Save favorites** (`/favorites`): tap the ♡ in the corner of any card. Favorites stay after a refresh (they are stored in `localStorage`), and cards open in place on the Favorites page too (`/favorites/<id>`).
 - **Mystery Reveal** (`/random`): press **Reveal Character** to play a short magical animation, then meet a random character. Open its details right on the page, add it to your favorites, or press **Try Again** for someone new (never the same character twice in a row).
-- Works on desktop, tablets, and phones, and respects the "reduce motion" setting.
+- **Responsive and accessible**: works on desktop, tablets, and phones, and respects the "reduce motion" setting.
 
 ## How to run it
 
@@ -27,7 +27,7 @@ npm install
 npm run dev
 ```
 
-Then open the address shown in the terminal (usually <http://localhost:5173>).
+Then open the address shown in the terminal (usually `http://localhost:5173`).
 
 To build and check the production version:
 
@@ -38,7 +38,7 @@ npm run preview   # serve the built app locally
 
 ## How to run the tests
 
-The project uses [Vitest](https://vitest.dev) with React Testing Library.
+The project uses [Vitest](https://vitest.dev) with [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/).
 
 ```bash
 npm test          # run all tests once in the terminal
@@ -69,12 +69,12 @@ A few things the app handles because of how the API behaves:
 
 - [React](https://react.dev) + [TypeScript](https://www.typescriptlang.org) + [Vite](https://vite.dev)
 - [React Router](https://reactrouter.com) for the pages and character URLs
-- [Vitest](https://vitest.dev) and [React Testing Library](https://testing-library.com) for tests
+- [Vitest](https://vitest.dev) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) for tests
 - Custom CSS, with the fonts Great Vibes, Cormorant Garamond, and Nunito from [Google Fonts](https://fonts.google.com)
 
 ## Project structure
 
-```
+```text
 src/
   components/   reusable components (CharacterCard, CharacterGrid, CharacterDetails,
                 SearchBar, FavoriteButton, NavBar, PageHeader, MysterySilhouette, RevealSparkles)
