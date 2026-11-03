@@ -1,42 +1,59 @@
-import { cleanup, render, screen } from '@testing-library/react'
+import { cleanup, render, screen, within } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { afterEach, describe, expect, it } from 'vitest'
 import NavBar from './NavBar'
 
-function activeLinkAt(path: string): string[] {
+const PAGES = [
+  { name: 'Catalog', href: '/characters' },
+  { name: 'Favorites', href: '/favorites' },
+  { name: 'Random', href: '/random' },
+]
+
+function renderAt(path: string) {
   render(
     <MemoryRouter initialEntries={[path]}>
       <NavBar />
     </MemoryRouter>,
   )
-  return screen
-    .getAllByRole('link')
-    .filter((link) => link.getAttribute('aria-current') === 'page')
-    .map((link) => link.textContent ?? '')
+  return within(screen.getByRole('navigation', { name: 'Main' }))
+}
+
+// Which navigation links are marked as "the page we are on"
+function activePages(nav: ReturnType<typeof renderAt>): string[] {
+  return PAGES.filter(
+    (page) => nav.getByRole('link', { name: page.name }).getAttribute('aria-current') === 'page',
+  ).map((page) => page.name)
 }
 
 afterEach(cleanup)
 
 describe('NavBar', () => {
   it('links to the three pages', () => {
-    render(
-      <MemoryRouter>
-        <NavBar />
-      </MemoryRouter>,
-    )
+    const nav = renderAt('/characters')
 
-    const links = screen.getAllByRole('link').map((link) => [link.textContent, link.getAttribute('href')])
-    expect(links).toEqual([
-      ['Catalog', '/characters'],
-      ['Favorites', '/favorites'],
-      ['Random', '/random'],
-    ])
+    expect(nav.getAllByRole('link')).toHaveLength(3)
+    for (const page of PAGES) {
+      expect(nav.getByRole('link', { name: page.name }).getAttribute('href')).toBe(page.href)
+    }
   })
 
-  it('highlights only the page we are on, including Catalog when a card is open', () => {
-    expect(activeLinkAt('/favorites')).toEqual(['Favorites'])
+  it('shows the site name, which leads back to the catalog', () => {
+    renderAt('/favorites')
+
+    const brand = screen.getByRole('link', { name: 'Disney Catalog' })
+    expect(brand.getAttribute('href')).toBe('/characters')
+    // The site name is not a menu item, so it is never marked as the current page
+    expect(brand.getAttribute('aria-current')).toBeNull()
+  })
+
+  it('highlights only the page we are on, including while a card is open', () => {
+    expect(activePages(renderAt('/favorites'))).toEqual(['Favorites'])
     cleanup()
     // An open card's URL is still part of the catalog
-    expect(activeLinkAt('/characters/4703')).toEqual(['Catalog'])
+    expect(activePages(renderAt('/characters/4703'))).toEqual(['Catalog'])
+    cleanup()
+    expect(activePages(renderAt('/favorites/2099'))).toEqual(['Favorites'])
+    cleanup()
+    expect(activePages(renderAt('/random'))).toEqual(['Random'])
   })
 })

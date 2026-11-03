@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import CharacterCard from '../components/CharacterCard'
 import MysterySilhouette from '../components/MysterySilhouette'
+import PageHeader from '../components/PageHeader'
 import RevealSparkles from '../components/RevealSparkles'
 import { useFavorites } from '../hooks/useFavorites'
 import type { Character, CharacterListResponse } from '../types/character'
@@ -111,7 +112,7 @@ function RandomPage({ revealDelayMs = REVEAL_ANIMATION_MS }: RandomPageProps) {
 
   return (
     <main className="app random-page">
-      <h1 className="app__title">Mystery Character</h1>
+      <PageHeader title="Mystery Character" subtitle="A little magic, a surprise friend." />
 
       {phase === 'mystery' && (
         <section className="random-page__stage">

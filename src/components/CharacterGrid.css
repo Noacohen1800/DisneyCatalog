@@ -2,7 +2,7 @@
   display: grid;
   /* Desktop: 4 cards per row */
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 24px;
   /* Cards keep their own height. When one card expands, the others in its row don't
      stretch to match it; only the rows below move down. */
   align-items: start;

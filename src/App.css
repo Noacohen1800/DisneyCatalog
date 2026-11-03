@@ -1,96 +1,138 @@
+/* ----- Page layout ----- */
 .app {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 24px 16px 48px;
+  padding: 24px 20px 64px;
 }
 
-.app__title {
-  margin: 0 0 24px;
-  font-size: 2rem;
-  text-align: center;
-  color: var(--accent);
-}
-
-/* Loading and error messages */
+/* ----- Loading, empty, and error messages ----- */
 .status-message {
-  margin: 24px 0;
+  margin: 28px auto;
+  max-width: 520px;
+  color: var(--muted);
+  font-weight: 600;
   text-align: center;
 }
 
 .status-message p {
-  margin: 0 0 12px;
+  margin: 0 0 14px;
 }
 
 .status-message--error {
+  padding: 16px 20px;
+  border: 1px solid #f6c9c5;
+  border-radius: 16px;
+  background: var(--error-bg);
   color: var(--error);
 }
 
 .load-more {
   display: flex;
   justify-content: center;
-  margin-top: 32px;
+  margin-top: 40px;
 }
 
+/* ----- Buttons ----- */
+
+/* The main button: warm gold with dark text and a soft glow */
 .button {
-  padding: 10px 24px;
-  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border: 1px solid rgba(201, 151, 59, 0.55);
   border-radius: 999px;
-  background: var(--accent);
-  color: #fff;
+  background: linear-gradient(135deg, #fbe7b0 0%, #f1cf7c 55%, #e6b65a 100%);
+  color: var(--ink);
   font: inherit;
-  font-weight: 600;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-decoration: none;
   cursor: pointer;
+  box-shadow: 0 6px 16px rgba(201, 151, 59, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
 
 .button:hover {
-  opacity: 0.9;
+  transform: translateY(-2px);
+  filter: brightness(1.04);
+  box-shadow: 0 10px 24px rgba(201, 151, 59, 0.38), 0 0 0 4px rgba(241, 220, 170, 0.55);
 }
 
-/* Full-page error for a character id that doesn't exist */
+.button:active {
+  transform: translateY(0);
+}
+
+/* A quieter button: white with a golden border */
+.button.button--outline {
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.button.button--outline:hover {
+  background: var(--gold-light);
+}
+
+/* ----- Favorites page with no favorites yet ----- */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  max-width: 460px;
+  margin: 24px auto 0;
+  padding: 36px 28px;
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.empty-state__icon {
+  color: var(--favorite);
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+.empty-state__text {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.05rem;
+}
+
+/* ----- Full-page error for a character id that doesn't exist ----- */
 .not-found {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 6px;
   /* Fills the screen below the navigation bar */
-  min-height: 80vh;
-  padding: 16px;
+  min-height: 75vh;
+  padding: 24px 20px;
   text-align: center;
 }
 
-/* Favorites page with no favorites yet */
-.empty-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  margin-top: 48px;
-  text-align: center;
-}
-
-.empty-state__text {
-  margin: 0;
-  max-width: 420px;
-}
-
-/* A link that looks like a button */
-a.button {
-  display: inline-block;
-  text-decoration: none;
+.not-found__icon {
+  color: var(--gold);
+  font-size: 2.6rem;
+  line-height: 1;
 }
 
 .not-found__title {
-  margin: 0 0 8px;
-  font-size: 2rem;
-  color: var(--text-h);
+  margin: 8px 0 0;
+  font-family: var(--font-heading);
+  font-size: 2.6rem;
+  font-weight: 700;
+}
+
+.not-found p {
+  margin: 0;
+  color: var(--muted);
 }
 
 .not-found__link {
-  margin-top: 16px;
-  padding: 10px 20px;
-  border-radius: 999px;
-  background: var(--accent);
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
+  margin-top: 18px;
 }

@@ -1,0 +1,128 @@
+.page-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 8px auto 28px;
+  max-width: 680px;
+  text-align: center;
+}
+
+/* The title with a twinkling star on each side */
+.page-header__title-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  max-width: 100%;
+}
+
+.page-header__title {
+  margin: 0;
+  min-width: 0;
+  color: var(--ink);
+  font-family: var(--font-heading);
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  overflow-wrap: anywhere;
+}
+
+/* The main page: a big, fairytale script title with a soft golden halo */
+.page-header--hero {
+  margin-top: 20px;
+}
+
+.page-header--hero .page-header__title {
+  /* The script font's letters reach outside their box, so give them room */
+  padding: 0 0.15em;
+  font-family: var(--font-title);
+  font-size: clamp(3.1rem, 11vw, 5.6rem);
+  font-weight: 400;
+  line-height: 1.15;
+  text-shadow: 0 0 24px rgba(241, 220, 170, 0.9), 0 2px 0 rgba(255, 255, 255, 0.8);
+}
+
+.page-header__subtitle {
+  margin: 6px 0 0;
+  color: var(--text);
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.page-header--hero .page-header__subtitle {
+  font-size: clamp(1.15rem, 3.4vw, 1.5rem);
+}
+
+/* Small golden stars that twinkle beside the title */
+.page-header__sparkle {
+  flex-shrink: 0;
+  align-self: flex-start;
+  color: var(--gold);
+  font-size: 1.1rem;
+  animation: header-twinkle 3s ease-in-out infinite;
+}
+
+.page-header__sparkle--small {
+  align-self: flex-end;
+  font-size: 0.8rem;
+  animation-delay: 1.5s;
+}
+
+.page-header--hero .page-header__sparkle {
+  font-size: 1.6rem;
+}
+
+.page-header--hero .page-header__sparkle--small {
+  font-size: 1.1rem;
+}
+
+.page-header__divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  color: var(--gold);
+}
+
+.page-header__divider span:not(.page-header__divider-star) {
+  display: block;
+  width: 56px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+
+.page-header__divider span:last-child {
+  transform: scaleX(-1);
+}
+
+.page-header__divider-star {
+  font-size: 0.9rem;
+}
+
+@keyframes header-twinkle {
+  0%, 100% { opacity: 0.35; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-header__sparkle {
+    animation: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-header__title-row {
+    gap: 6px;
+  }
+
+  .page-header__title {
+    font-size: 2.1rem;
+  }
+
+  .page-header--hero .page-header__sparkle {
+    font-size: 1.1rem;
+  }
+}

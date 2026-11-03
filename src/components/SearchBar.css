@@ -1,7 +1,7 @@
 .search-bar {
   position: relative;
-  max-width: 480px;
-  margin: 0 auto 24px;
+  max-width: 520px;
+  margin: 0 auto 36px;
 }
 
 /* The label is for screen readers only; the placeholder shows the same text */
@@ -14,20 +14,32 @@
   white-space: nowrap;
 }
 
+/* A white pill with a small magnifying glass drawn on the left */
 .search-bar__input {
   width: 100%;
-  padding: 12px 44px 12px 18px;
+  padding: 14px 48px 14px 50px;
   border: 1px solid var(--border);
   border-radius: 999px;
-  background: var(--card-bg);
-  color: var(--text-h);
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238f6420' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.5-3.5'/%3E%3C/svg%3E")
+      no-repeat 20px center / 18px 18px,
+    var(--surface);
+  color: var(--ink);
   font: inherit;
+  font-size: 1rem;
   box-shadow: var(--shadow);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+.search-bar__input::placeholder {
+  color: var(--muted);
+}
+
+/* A golden glow while typing */
 .search-bar__input:focus {
-  outline: 2px solid var(--accent);
-  outline-offset: 1px;
+  border-color: var(--gold);
+  outline: none;
+  box-shadow: var(--shadow), 0 0 0 4px rgba(241, 220, 170, 0.7);
 }
 
 /* Hide the browser's own clear button; we have ours */
@@ -38,20 +50,21 @@
 .search-bar__clear {
   position: absolute;
   top: 50%;
-  right: 8px;
+  right: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   transform: translateY(-50%);
-  border: none;
+  border: 1px solid var(--border);
   border-radius: 50%;
-  background: var(--image-bg);
-  color: var(--text-h);
+  background: var(--surface-soft);
+  color: var(--ink);
+  font: inherit;
   cursor: pointer;
 }
 
 .search-bar__clear:hover {
-  background: var(--border);
+  background: var(--gold-light);
 }

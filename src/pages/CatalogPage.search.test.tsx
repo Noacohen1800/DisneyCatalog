@@ -64,6 +64,14 @@ afterEach(() => {
 })
 
 describe('Catalog search', () => {
+  it('shows the magical site title and its tagline above the search box', async () => {
+    renderCatalog()
+
+    expect(screen.getByRole('heading', { level: 1, name: 'Disney Catalog' })).toBeTruthy()
+    expect(screen.getByText('Where every character has a little magic.')).toBeTruthy()
+    await screen.findByRole('heading', { name: 'Goofy' })
+  })
+
   it('searches the API by name and shows only matching characters that pass the catalog filter', async () => {
     renderCatalog()
     await screen.findByRole('heading', { name: 'Goofy' })

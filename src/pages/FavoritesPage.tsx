@@ -1,5 +1,6 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
 import CharacterGrid from '../components/CharacterGrid'
+import PageHeader from '../components/PageHeader'
 import { useFavorites } from '../hooks/useFavorites'
 
 function FavoritesPage() {
@@ -17,10 +18,13 @@ function FavoritesPage() {
 
   return (
     <main className="app">
-      <h1 className="app__title">My Favorites</h1>
+      <PageHeader title="My Favorites" subtitle="The characters closest to your heart." />
 
       {favorites.length === 0 ? (
         <div className="empty-state">
+          <span className="empty-state__icon" aria-hidden="true">
+            ♡
+          </span>
           <p className="empty-state__text">
             You haven't saved a favorite yet. Tap the ♡ on a character to save it here.
           </p>

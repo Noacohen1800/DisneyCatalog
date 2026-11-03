@@ -1,38 +1,47 @@
-/* Colors used across the app. Dark mode changes them below. */
+/* ----- The design in one place: colors, fonts, shadows ----- */
 :root {
-  --text: #4a4458;
-  --text-h: #1d1630;
-  --bg: #f7f5fc;
-  --card-bg: #ffffff;
-  --image-bg: #e8e4f3;
-  --border: #e3dff0;
-  --accent: #5b3cc4;
-  --error: #c62828;
-  --favorite: #e8336d;
-  --shadow: 0 4px 12px rgba(40, 20, 90, 0.08);
-  --shadow-hover: 0 10px 24px rgba(40, 20, 90, 0.16);
+  /* Text: very dark, for easy reading */
+  --ink: #1f1a17;
+  --text: #3a332e;
+  --muted: #6e645c;
 
-  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
-  line-height: 1.5;
+  /* Backgrounds: cream, white, and soft pastels */
+  --bg: #fffaf3;
+  --surface: #ffffff;
+  --surface-soft: #fff6ea;
+  --blush: #fde6ea;
+  --sky: #e1eef9;
+  --mint: #e5f4ec;
+
+  /* Warm accents */
+  --gold: #c9973b;
+  --gold-dark: #8f6420;
+  --gold-soft: #f1dcaa;
+  --gold-light: #fbf2dc;
+  --rose: #e98aa0;
+  --favorite: #e0457b;
+  --error: #a52a24;
+  --error-bg: #fdecea;
+
+  --border: #efe3d0;
+  --radius: 20px;
+  --card-padding: 10px;
+  --shadow: 0 6px 20px rgba(146, 108, 52, 0.09);
+  --shadow-hover: 0 16px 36px rgba(146, 108, 52, 0.18), 0 0 0 1px rgba(201, 151, 59, 0.35);
+  --glow: 0 0 0 4px rgba(241, 220, 170, 0.6);
+
+  /* Fonts */
+  --font-title: 'Great Vibes', 'Brush Script MT', cursive;
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Nunito', system-ui, 'Segoe UI', Roboto, sans-serif;
+
+  font-family: var(--font-body);
+  line-height: 1.55;
   color: var(--text);
   background: var(--bg);
-  color-scheme: light dark;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #c9c3da;
-    --text-h: #f4f1fb;
-    --bg: #15121f;
-    --card-bg: #211c30;
-    --image-bg: #2c2640;
-    --border: #342d4a;
-    --accent: #b39dff;
-    --error: #ff8a80;
-    --favorite: #ff5c8a;
-    --shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
-    --shadow-hover: 0 10px 24px rgba(0, 0, 0, 0.5);
-  }
+  /* The design is bright and light on every device */
+  color-scheme: light;
+  -webkit-font-smoothing: antialiased;
 }
 
 * {
@@ -41,5 +50,42 @@
 
 body {
   margin: 0;
-  background: var(--bg);
+  min-height: 100vh;
+  /* Soft pastel light in the corners of a cream page */
+  background:
+    radial-gradient(circle at 8% 0%, var(--blush) 0, transparent 32%),
+    radial-gradient(circle at 92% 6%, var(--sky) 0, transparent 34%),
+    radial-gradient(circle at 50% 100%, var(--gold-light) 0, transparent 45%),
+    var(--bg);
+  background-attachment: fixed;
+}
+
+/* A very faint sprinkle of golden "stardust" over the whole page */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle, rgba(201, 151, 59, 0.35) 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(233, 138, 160, 0.25) 1px, transparent 1.5px);
+  background-size: 140px 140px, 190px 190px;
+  background-position: 20px 30px, 90px 110px;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--ink);
+}
+
+a {
+  color: var(--gold-dark);
+}
+
+/* A clear golden focus ring for keyboard users, everywhere */
+:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
 }

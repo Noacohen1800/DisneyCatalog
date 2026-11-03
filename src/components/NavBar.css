@@ -1,58 +1,128 @@
-.nav-bar {
+/* A light, frosted bar that stays at the top while scrolling */
+.site-header {
   position: sticky;
   top: 0;
   z-index: 5;
-  padding: 10px 16px;
-  background: var(--card-bg);
   border-bottom: 1px solid var(--border);
-  box-shadow: var(--shadow);
+  background: rgba(255, 250, 243, 0.82);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 18px rgba(146, 108, 52, 0.07);
+}
+
+/* A thin golden line along the bottom edge */
+.site-header::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-soft), var(--gold), var(--gold-soft), transparent);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 20px;
+}
+
+.site-header__brand {
+  color: var(--ink);
+  font-family: var(--font-title);
+  font-size: 2rem;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-header__brand::after {
+  content: ' ✦';
+  color: var(--gold);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  vertical-align: super;
 }
 
 .nav-bar__list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .nav-bar__link {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 6px;
   padding: 8px 18px;
+  border: 1px solid transparent;
   border-radius: 999px;
-  color: var(--text-h);
-  font-weight: 600;
+  color: var(--ink);
+  font-weight: 700;
   text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nav-bar__icon {
+  color: var(--gold);
+  font-size: 0.9rem;
 }
 
 .nav-bar__link:hover {
-  background: var(--image-bg);
+  border-color: var(--border);
+  background: var(--surface);
 }
 
-/* The page we are on */
+/* The page we are on: a soft golden pill */
 .nav-bar__link--active {
-  background: var(--accent);
-  color: #fff;
+  border-color: rgba(201, 151, 59, 0.45);
+  background: linear-gradient(135deg, #fdf0cf, #f6dfa2);
+  box-shadow: 0 4px 12px rgba(201, 151, 59, 0.22);
 }
 
 .nav-bar__link--active:hover {
-  background: var(--accent);
+  background: linear-gradient(135deg, #fdf0cf, #f6dfa2);
 }
 
-/* Phones: smaller links so all three fit on one line */
-@media (max-width: 400px) {
-  .nav-bar {
-    padding: 8px;
+/* Tablets and phones: the name on top, the links below it */
+@media (max-width: 640px) {
+  .site-header__inner {
+    flex-direction: column;
+    gap: 6px;
+    padding: 8px 12px 10px;
   }
 
+  .site-header__brand {
+    font-size: 1.8rem;
+  }
+}
+
+/* Small phones: smaller links so all three fit on one line */
+@media (max-width: 400px) {
   .nav-bar__list {
     gap: 4px;
   }
 
   .nav-bar__link {
-    padding: 6px 12px;
-    font-size: 0.9rem;
+    padding: 6px 11px;
+    font-size: 0.88rem;
+  }
+}
+
+/* Very narrow phones: drop the little icons so the three links stay on one line */
+@media (max-width: 360px) {
+  .nav-bar__icon {
+    display: none;
+  }
+
+  .nav-bar__link {
+    padding: 6px 10px;
   }
 }

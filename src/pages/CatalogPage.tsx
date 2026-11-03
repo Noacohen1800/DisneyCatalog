@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import CharacterGrid from '../components/CharacterGrid'
+import PageHeader from '../components/PageHeader'
 import SearchBar from '../components/SearchBar'
 import { useFavorites } from '../hooks/useFavorites'
 import type {
@@ -158,9 +159,12 @@ function CatalogPage() {
   if (isNotFound) {
     return (
       <main className="not-found">
+        <span className="not-found__icon" aria-hidden="true">
+          ✧
+        </span>
         <h1 className="not-found__title">Character not found</h1>
         <p>We couldn't find a character with the id "{id}".</p>
-        <Link to="/characters" className="not-found__link">
+        <Link to="/characters" className="button not-found__link">
           Back to the catalog
         </Link>
       </main>
@@ -182,7 +186,11 @@ function CatalogPage() {
 
   return (
     <main className="app">
-      <h1 className="app__title">Disney Catalog</h1>
+      <PageHeader
+        title="Disney Catalog"
+        subtitle="Where every character has a little magic."
+        size="hero"
+      />
 
       <SearchBar value={searchText} onChange={handleSearchChange} />
 

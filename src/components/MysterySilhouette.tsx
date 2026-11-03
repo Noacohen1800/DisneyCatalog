@@ -37,8 +37,8 @@ function MysterySilhouette({ isRevealing }: MysterySilhouetteProps) {
       <svg className="mystery__shape" viewBox="0 0 200 200" aria-hidden="true">
         <defs>
           <radialGradient id="mystery-fill" cx="50%" cy="40%" r="60%">
-            <stop offset="0%" stopColor="#4b3a8c" />
-            <stop offset="100%" stopColor="#140f2b" />
+            <stop offset="0%" stopColor="#34466e" />
+            <stop offset="100%" stopColor="#141c31" />
           </radialGradient>
         </defs>
         <circle cx="100" cy="112" r="62" fill="url(#mystery-fill)" />

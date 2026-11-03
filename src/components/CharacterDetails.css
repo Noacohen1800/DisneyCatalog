@@ -1,27 +1,52 @@
 .character-details {
   /* Films first, then TV Shows below */
   display: grid;
-  gap: 12px;
+  gap: 14px;
   /* Long lists scroll inside the card instead of making it very tall */
-  max-height: 240px;
+  max-height: 260px;
+  padding-right: 4px;
   overflow-y: auto;
+  scrollbar-color: var(--gold-soft) transparent;
 }
 
 .character-details__title {
-  margin: 0 0 4px;
-  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 6px;
+  color: var(--ink);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--accent);
+}
+
+/* A small golden star before each section title */
+.character-details__title::before {
+  content: '✦';
+  color: var(--gold);
+  font-size: 0.7rem;
 }
 
 .character-details__list {
   margin: 0;
-  padding-left: 18px;
-  font-size: 0.9rem;
+  padding: 0;
+  list-style: none;
+  color: var(--text);
+  font-size: 0.92rem;
+}
+
+.character-details__list li {
+  padding: 5px 0;
+  border-bottom: 1px dashed var(--border);
+}
+
+.character-details__list li:last-child {
+  border-bottom: none;
 }
 
 .character-details__empty {
   margin: 0;
-  font-size: 0.9rem;
+  color: var(--muted);
+  font-size: 0.92rem;
 }

@@ -1,32 +1,29 @@
-/* A small round button that sits on the top-right corner of the character's image */
+/* A small round button on the top-right corner of the character's picture */
 .favorite-button {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: calc(var(--card-padding) + 8px);
+  right: calc(var(--card-padding) + 8px);
   z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   padding: 0;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.9);
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
-  color: #6b6375;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 8px rgba(31, 26, 23, 0.14);
+  color: var(--ink);
   cursor: pointer;
-  transition: transform 0.15s ease, background 0.15s ease;
+  transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.2s ease;
 }
 
 .favorite-button:hover {
   transform: scale(1.1);
   background: #fff;
-}
-
-.favorite-button:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  box-shadow: 0 4px 12px rgba(224, 69, 123, 0.25);
 }
 
 .favorite-button__icon {
@@ -38,11 +35,24 @@
   stroke-linejoin: round;
 }
 
-/* A favorite: the heart is filled with pink-red */
+/* A favorite: the heart is filled with pink-red and gives a little beat */
 .favorite-button--active {
   color: var(--favorite);
 }
 
 .favorite-button--active .favorite-button__icon {
   fill: currentColor;
+  animation: heart-beat 0.35s ease-out;
+}
+
+@keyframes heart-beat {
+  0% { transform: scale(0.7); }
+  60% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .favorite-button--active .favorite-button__icon {
+    animation: none;
+  }
 }

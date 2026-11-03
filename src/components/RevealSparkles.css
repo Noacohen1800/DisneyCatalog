@@ -1,10 +1,11 @@
 /* Covers the square image at the top of the card. Clicks go through it to the card. */
 .reveal-sparkles {
   position: absolute;
-  top: 0;
-  left: 0;
+  /* Inside the card's frame, exactly over the picture */
+  top: var(--card-padding);
+  left: var(--card-padding);
   z-index: 2;
-  width: 100%;
+  width: calc(100% - 2 * var(--card-padding));
   aspect-ratio: 1 / 1;
   pointer-events: none;
 }

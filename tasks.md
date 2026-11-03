@@ -94,15 +94,23 @@ Build in this order, one task at a time, with one commit per task (including `PR
 
 **Done when:** `/random` shows the mystery silhouette, "Reveal Character" plays the animation and shows a character, clicking "Try Again" many times never shows the same character twice in a row, the revealed character appears with a golden glow and sparkles, clicking it or "View Details" expands its details on `/random` and ✕ closes them, the heart works the same as on the catalog, the page looks fine at phone width, and all tests pass.
 
-## Task 8 · Final check and README
-- Check every page and the expanded card at phone width (about 375px) and fix any layout problems.
+## Task 8 · Visual design, final check, and README
+- Redesign the whole site with a bright, magical look (see "Look and feel" in the PRD), keeping every feature working exactly as before:
+  - Design tokens in `index.css`: cream, white, and pastel backgrounds, warm gold accents (no dominant purple), very dark text, soft shadows, and a light-only color scheme.
+  - Fonts from Google Fonts (no extra libraries): Great Vibes for the fairytale title, Cormorant Garamond for headings, Nunito for body text.
+  - A reusable **PageHeader** component on every page: the decorated title with twinkling stars and a golden divider. The catalog uses the big "hero" version with the tagline "Where every character has a little magic."
+  - NavBar: frosted cream bar with the site name in the fairytale font, pill links with small icons, and a golden pill for the current page.
+  - Cards: white with a pastel picture frame, rounded corners, soft shadows, a golden hover glow, and a small star on hover. Heart, search box, buttons, empty state, error messages, and the "Character not found" page restyled to match.
+  - Mystery Reveal and sparkles kept, recolored: a midnight-blue silhouette with golden light, a rose-to-gold Reveal button, and the "No image" placeholder in cream and gold.
+  - Remove the unused Vite template images.
+- Check every page and the expanded card at phone width (about 375px and 320px) and fix any layout problems.
 - Go through the course requirements one by one:
   - React + Vite + TypeScript, React Router, Vitest, custom CSS, and no backend
   - No `any` anywhere, and types for all API data and props
-  - At least 4 reusable components, each in its own file: CharacterCard, CharacterGrid, CharacterDetails, SearchBar, FavoriteButton, NavBar, MysterySilhouette, RevealSparkles
+  - At least 4 reusable components, each in its own file: CharacterCard, CharacterGrid, CharacterDetails, SearchBar, FavoriteButton, NavBar, PageHeader, MysterySilhouette, RevealSparkles
   - map with unique keys, data passed through props, useParams for the id, Link/NavLink for navigation
   - fetch inside useEffect, with loading, error, and success states everywhere data is loaded
   - All pages: `/characters`, `/favorites`, `/random`, the `/characters/:id` expanded card, and the full-page "Character not found" error
 - Rewrite `README.md`: what the app does, how to install and run it, how to run the tests (`npm test`, `npm run test:ui`), and which API it uses (with the URL).
 
-**Done when:** all PRD acceptance criteria pass by hand, `npm test` shows at least 5 passing tests (75 after Task 7), `npm run test:ui` works, `npm run build` has no errors, every item on the checklist above is true, and the README covers all four topics.
+**Done when:** the new design looks bright and consistent on every page at desktop and phone width, every feature still works, all PRD acceptance criteria pass by hand, `npm test` shows at least 5 passing tests (79 after Task 8), `npm run test:ui` works, `npm run build` has no errors, every item on the checklist above is true, and the README covers all four topics.
