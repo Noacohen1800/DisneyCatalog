@@ -1,11 +1,10 @@
 .character-details {
+  /* Films first, then TV Shows below */
+  display: grid;
+  gap: 12px;
   /* Long lists scroll inside the card instead of making it very tall */
-  max-height: 220px;
+  max-height: 240px;
   overflow-y: auto;
-}
-
-.character-details__section + .character-details__section {
-  margin-top: 12px;
 }
 
 .character-details__title {

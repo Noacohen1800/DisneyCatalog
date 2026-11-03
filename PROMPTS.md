@@ -539,3 +539,21 @@ I also updated PRD.md and tasks.md to match the new implementation. No applicati
 **Task 3 – Issues and Fixes:**
 We identified two main issues: the catalog displayed characters with no films or TV shows, and some missing character images appeared as grey error pictures instead of the Mickey placeholder. We fixed this by filtering out characters without any films or TV shows and improving image validation using HEAD requests to check whether suspicious images actually exist. We also ensured pagination continues to work correctly after filtering and updated the project documentation.
 #####################################
+
+## 2026-11-03
+
+**16:36 · claude**
+
+> Change the catalog grid to display 4 characters per row instead of 5 on desktop. Make sure the expanded character card fits naturally into the grid without causing awkward layout shifts. Keep the layout responsive on smaller screens.
+
+**16:36 · claude**
+
+> Change the catalog grid to display 4 characters per row instead of 5 on desktop. Make sure the expanded character card fits naturally into the grid without causing awkward layout shifts. Keep the layout responsive on smaller screens.
+
+**16:41 · claude**
+
+> Change the expanded character card so it grows downward within its original grid column, instead of spanning the entire row. Keep the 4-column grid and the positions/order of the other cards unchanged. The expanded card should push the rows below it downward naturally, without rearranging other cards horizontally.
+
+#######################
+Updated the catalog to display 4 characters per row and adjusted the expanded card to grow downward within its original column, keeping the other cards in their original positions.
+#######################

@@ -1,22 +1,30 @@
 .character-grid {
   display: grid;
-  /* As many 180px-wide columns as fit on the screen */
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  /* Desktop: 4 cards per row */
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
-  /* If an expanded card leaves an empty spot at the end of a row, a later card fills it */
-  grid-auto-flow: dense;
+  /* Cards keep their own height. When one card expands, the others in its row don't
+     stretch to match it; only the rows below move down. */
+  align-items: start;
 }
 
-/* Phones: always two columns */
-@media (max-width: 480px) {
+/* Tablets and small laptops: 3 per row */
+@media (max-width: 900px) {
+  .character-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Phones: 2 per row */
+@media (max-width: 600px) {
   .character-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
   }
 }
 
-/* Very narrow screens: one column */
-@media (max-width: 320px) {
+/* Very narrow screens: 1 per row */
+@media (max-width: 340px) {
   .character-grid {
     grid-template-columns: 1fr;
   }

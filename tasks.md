@@ -27,7 +27,7 @@ Build in this order, one task at a time, with one commit per task (including `PR
 ## Task 2 · Click a card to see its details
 - Install React Router. Add the `/characters` route for the catalog page, and send `/` to `/characters`.
 - Make each card a Link to `/characters/<id>`.
-- Add the `/characters/:id` route. It shows the same catalog page, which reads the id with useParams and tells CharacterGrid which card is expanded. That card opens in place (two columns wide, image on the left, details on the right) while the rest of the catalog stays visible, and it scrolls into view.
+- Add the `/characters/:id` route. It shows the same catalog page, which reads the id with useParams and tells CharacterGrid which card is expanded. That card opens in its own column and grows downward (image on top, details below), pushing the rows below it down without moving any other card sideways, while the rest of the catalog stays visible, and it scrolls into view.
 - Add a reusable **CharacterDetails** component that gets the character as a prop and shows the Films and TV Shows lists inside the expanded card.
 - Write a helper function, in its own file, that takes a character and returns the Films and TV Shows categories, keeping only the ones that have data. CharacterDetails uses it to hide empty categories.
 - The ✕ button on the expanded card is a Link back to `/characters`, which collapses it. Long lists scroll inside the card. On very narrow screens, the expanded card stacks the image above the details.

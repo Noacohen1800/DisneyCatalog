@@ -31,11 +31,10 @@
   color: var(--text-h);
 }
 
-/* ----- Expanded card: takes two columns, image on the left, details on the right ----- */
+/* ----- Expanded card: stays in its own column and grows downward ----- */
+/* Same width and image as a closed card; the name, ✕ button, and details go below the image. */
 
 .character-card--expanded {
-  grid-column: span 2;
-  flex-direction: row;
   border-color: var(--accent);
   box-shadow: var(--shadow-hover);
 }
@@ -44,16 +43,9 @@
   transform: none;
 }
 
-.character-card--expanded .character-card__image {
-  width: 40%;
-  flex-shrink: 0;
-  aspect-ratio: auto;
-}
-
 .character-card__body {
-  flex: 1;
   min-width: 0;
-  padding: 12px 16px 16px;
+  padding: 12px 12px 16px;
 }
 
 .character-card__header {
@@ -85,17 +77,4 @@
 
 .character-card__close:hover {
   background: var(--border);
-}
-
-/* Very narrow screens: the grid has one column, so the expanded card stacks */
-@media (max-width: 320px) {
-  .character-card--expanded {
-    grid-column: auto;
-    flex-direction: column;
-  }
-
-  .character-card--expanded .character-card__image {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-  }
 }
