@@ -565,3 +565,13 @@ Updated the catalog to display 4 characters per row and adjusted the expanded ca
 **Task 4 – Testing:**
 Set up Vitest and installed @vitest/ui, jsdom, and React Testing Library. Added 24 meaningful unit tests across 5 test files, covering character filtering, empty categories, pagination, random character selection, and image fallback behavior. Extracted reusable logic into separate helper functions to make it testable. Verified that the tests detect intentional bugs and all 24 pass after restoring the code. The build and linter also pass, with no use of `any`. Tested both the terminal command and the Vitest UI successfully.
 #######################
+
+**17:12 · claude**
+
+> <ide_opened_file>The user opened the file c:\Users\User\OneDrive\לימודים\סמסטר ג\פיתוח WEB ושימוש בAI\DisneyCatalog\tasks.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+> Implement Task 5 according to `tasks.md` and `PRD.md`. Add the character search functionality as specified, making sure it works correctly with the Disney API, pagination, and the existing catalog filter. Include appropriate loading/error handling if needed, write meaningful Vitest tests for the new functionality, and make sure all existing tests still pass. Do not move on to Task 6.
+
+#################################
+**Task 5 – Character Search:**
+Added a search option to the character catalog using the Disney API. The search works with uppercase and lowercase letters, removes extra spaces, and waits 400ms after typing before sending a request. It also handles cases where the API returns only one character. Fixed the Load More button so it continues loading search results instead of returning to the regular catalog. Added loading, error, and no-results messages, a clear button, and automatic closing of an open character card when starting a new search. Added 14 new tests, bringing the total to 38 passing tests. Also checked that the tests detect intentional errors and updated PRD.md and tasks.md.
+#################################

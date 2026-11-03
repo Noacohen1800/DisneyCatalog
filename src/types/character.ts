@@ -22,10 +22,11 @@ export interface ApiInfo {
   nextPage: string | null // null on the last page
 }
 
-// Answer for a page of characters: /character?page=1&pageSize=50
+// Answer for a page of characters: /character?page=1&pageSize=50 (and &name=... when searching)
+// Usually "data" is a list, but when a search matches exactly one character it is that single character.
 export interface CharacterListResponse {
   info: ApiInfo
-  data: Character[]
+  data: Character | Character[]
 }
 
 // Answer for one character: /character/{id}

@@ -1,4 +1,5 @@
 import type { Character, CharacterListResponse } from '../types/character'
+import { toCharacterList } from './characterApi'
 import { hasFilmsOrTvShows } from './hasFilmsOrTvShows'
 
 export interface ProcessedPage {
@@ -11,9 +12,9 @@ export interface ProcessedPage {
   shouldLoadNextPage: boolean
 }
 
-// Decides what the catalog does with one page of API results.
+// Decides what the catalog does with one page of API results (normal list or search results).
 export function processCharacterPage(response: CharacterListResponse): ProcessedPage {
-  const characters = response.data.filter(hasFilmsOrTvShows)
+  const characters = toCharacterList(response.data).filter(hasFilmsOrTvShows)
   const hasNextPage = response.info.nextPage !== null
 
   return {

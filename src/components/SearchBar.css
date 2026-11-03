@@ -1,0 +1,57 @@
+.search-bar {
+  position: relative;
+  max-width: 480px;
+  margin: 0 auto 24px;
+}
+
+/* The label is for screen readers only; the placeholder shows the same text */
+.search-bar__label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.search-bar__input {
+  width: 100%;
+  padding: 12px 44px 12px 18px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--card-bg);
+  color: var(--text-h);
+  font: inherit;
+  box-shadow: var(--shadow);
+}
+
+.search-bar__input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* Hide the browser's own clear button; we have ours */
+.search-bar__input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.search-bar__clear {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  transform: translateY(-50%);
+  border: none;
+  border-radius: 50%;
+  background: var(--image-bg);
+  color: var(--text-h);
+  cursor: pointer;
+}
+
+.search-bar__clear:hover {
+  background: var(--border);
+}

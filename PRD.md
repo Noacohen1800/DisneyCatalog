@@ -55,4 +55,5 @@ All data screens show a loading message while data is on its way and a clear err
 - When `info.nextPage` is empty, there are no more characters, so the "Load more" button is hidden.
 - Asking for one character by id returns that character as a single object. An id that doesn't exist returns an empty list, not an error. A non-numeric id (like `abc`) returns the normal list, so the app treats it as "not found" without calling the API.
 - When a search matches exactly one character, the API returns that single character instead of a list. The app needs to handle both cases.
+- **Search:** the API matches part of the name and ignores upper/lower case ("mi" finds 380 characters over 8 pages), so search results are paginated with "Load more" and filtered like the normal list. Spaces at the ends change the results ("Elsa " finds fewer than "Elsa"), so the search text is trimmed. The `nextPage` link in a search answer leaves out the name, so the app builds each page's URL itself.
 - Favorites store enough information (id, name, image) to show the Favorites page without calling the API again.

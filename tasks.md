@@ -61,11 +61,13 @@ Build in this order, one task at a time, with one commit per task (including `PR
 **Done when:** `npm test` runs and all tests pass (24 tests in 5 files), `npm run build` still passes, and `npm run test:ui` opens the Vitest UI in the browser.
 
 ## Task 5 · Search by name
-- Add a reusable **SearchBar** component above the grid. It gets the current text and a change handler as props.
-- Typing a name loads the matching characters from the API.
-- Write a helper function that turns any API answer into a list: the API returns a list, or a single character when there is exactly one match.
+- Add a reusable **SearchBar** component above the grid. It gets the current text and a change handler as props, and has a ✕ button that clears it.
+- Typing a name loads the matching characters from the API, 400 ms after the user stops typing (one request, not one per letter). Spaces at the start and end are trimmed.
+- Search results use the same loading, catalog filter (films or TV shows), and "Load more" as the normal list. Every page's URL is built by the app (`buildCharactersUrl`), because the API's `nextPage` link drops the search name.
+- Write a helper function (`toCharacterList`) that turns any API answer into a list: the API returns a list, or a single character when there is exactly one match.
 - Search has its own three states: a loading message while results are on the way, an error message if the search request fails, and the results (or a "No characters found" message when there are no matches). Clearing the search shows the normal list again.
-- Add 2 tests: the helper returns a list unchanged, and it wraps a single character in a list.
+- Typing a new search closes an open card, so it doesn't stay pinned above the results.
+- Add tests: `buildCharactersUrl` and `toCharacterList` (URL building, trimming, special characters, single object vs. list), a single-match page in `processCharacterPage`, and a test of the whole search on the catalog page with a fake API (results, filter, single match, no results, loading and error messages, one request while typing, clearing).
 
 **Done when:** searching "Mickey" shows only matching characters, a search with exactly one match still shows one card, a nonsense search shows the "no results" message, a search with the internet off shows the error message, a loading message appears while searching, clearing the box brings the full list back, and all tests pass.
 
@@ -98,4 +100,4 @@ Build in this order, one task at a time, with one commit per task (including `PR
   - All pages: `/characters`, `/favorites`, `/random`, the `/characters/:id` expanded card, and the full-page "Character not found" error
 - Rewrite `README.md`: what the app does, how to install and run it, how to run the tests (`npm test`, `npm run test:ui`), and which API it uses (with the URL).
 
-**Done when:** all PRD acceptance criteria pass by hand, `npm test` shows at least 5 passing tests (24 after Task 4), `npm run test:ui` works, `npm run build` has no errors, every item on the checklist above is true, and the README covers all four topics.
+**Done when:** all PRD acceptance criteria pass by hand, `npm test` shows at least 5 passing tests (38 after Task 5), `npm run test:ui` works, `npm run build` has no errors, every item on the checklist above is true, and the README covers all four topics.

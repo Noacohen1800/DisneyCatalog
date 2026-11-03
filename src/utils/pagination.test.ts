@@ -67,6 +67,25 @@ describe('processCharacterPage (what the catalog does with one API page)', () =>
     expect(result.shouldLoadNextPage).toBe(true)
   })
 
+  it('handles a search with exactly one match, where the API sends a single object', () => {
+    const oneMatch: CharacterListResponse = {
+      info: { count: 1, totalPages: 1, previousPage: null, nextPage: null },
+      data: makeCharacter(7),
+    }
+    const oneMatchFilteredOut: CharacterListResponse = {
+      info: { count: 1, totalPages: 1, previousPage: null, nextPage: null },
+      data: makeCharacter(8, []),
+    }
+
+    expect(processCharacterPage(oneMatch).characters.map((character) => character._id)).toEqual([7])
+    // The single match has no films or TV shows: no results, and nothing more to load
+    expect(processCharacterPage(oneMatchFilteredOut)).toEqual({
+      characters: [],
+      hasNextPage: false,
+      shouldLoadNextPage: false,
+    })
+  })
+
   it('stops on an empty last page instead of trying to load pages that don\'t exist', () => {
     const emptyLastPage = makePage([], null)
 
