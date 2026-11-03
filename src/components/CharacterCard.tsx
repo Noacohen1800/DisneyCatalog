@@ -22,7 +22,11 @@ interface CharacterCardProps {
   isFavorite: boolean
   onToggleFavorite: () => void
   // The page the card belongs to: a closed card opens at basePath/<id>, and ✕ goes back to basePath
-  basePath: string
+  basePath?: string
+  // Optional: open and close the card without changing the URL (used on the Random page).
+  // When these are given, the card uses them instead of links.
+  onOpen?: () => void
+  onClose?: () => void
 }
 
 function CharacterCard({
@@ -30,7 +34,9 @@ function CharacterCard({
   isExpanded,
   isFavorite,
   onToggleFavorite,
-  basePath,
+  basePath = '/characters',
+  onOpen,
+  onClose,
 }: CharacterCardProps) {
   const cardRef = useRef<HTMLElement>(null)
 
@@ -96,9 +102,20 @@ function CharacterCard({
         <div className="character-card__body">
           <div className="character-card__header">
             <h2 className="character-card__name">{character.name}</h2>
-            <Link to={basePath} className="character-card__close" aria-label="Close details">
-              ✕
-            </Link>
+            {onClose ? (
+              <button
+                type="button"
+                className="character-card__close"
+                aria-label="Close details"
+                onClick={onClose}
+              >
+                ✕
+              </button>
+            ) : (
+              <Link to={basePath} className="character-card__close" aria-label="Close details">
+                ✕
+              </Link>
+            )}
           </div>
           <CharacterDetails character={character} />
         </div>
@@ -106,13 +123,39 @@ function CharacterCard({
     )
   }
 
+  const imageAndName = (
+    <>
+      {image}
+      <h2 className="character-card__name">{character.name}</h2>
+    </>
+  )
+
   return (
     <article className="character-card">
-      {/* The image and name are a link that opens this character's details */}
-      <Link to={`${basePath}/${character._id}`} className="character-card__link">
-        {image}
-        <h2 className="character-card__name">{character.name}</h2>
-      </Link>
+      {onOpen ? (
+        // Opens the card in place. A <div> acting as a button, because a real <button>
+        // can't contain a heading. Enter and Space work like a click, as on a button.
+        <div
+          role="button"
+          tabIndex={0}
+          className="character-card__link"
+          aria-label={`Show details for ${character.name}`}
+          onClick={onOpen}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault()
+              onOpen()
+            }
+          }}
+        >
+          {imageAndName}
+        </div>
+      ) : (
+        // The image and name are a link that opens this character's details
+        <Link to={`${basePath}/${character._id}`} className="character-card__link">
+          {imageAndName}
+        </Link>
+      )}
       {/* The heart sits outside the link, so clicking it doesn't open the card */}
       {heart}
     </article>

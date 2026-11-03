@@ -2,6 +2,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import NavBar from './components/NavBar'
 import CatalogPage from './pages/CatalogPage'
 import FavoritesPage from './pages/FavoritesPage'
+import RandomPage from './pages/RandomPage'
 import './App.css'
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/favorites" element={<FavoritesPage />} />
         {/* Same page, with the card of the favorite in the URL expanded */}
         <Route path="/favorites/:id" element={<FavoritesPage />} />
+        <Route path="/random" element={<RandomPage />} />
         <Route path="*" element={<Navigate to="/characters" replace />} />
       </Routes>
     </>

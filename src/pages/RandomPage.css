@@ -1,0 +1,93 @@
+.random-page__stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.random-page__hint {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--text-h);
+  text-align: center;
+}
+
+/* The big magical button */
+.reveal-button {
+  padding: 14px 32px;
+  background: linear-gradient(135deg, var(--accent), var(--favorite));
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 6px 18px rgba(91, 60, 196, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.reveal-button:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(232, 51, 109, 0.45);
+}
+
+/* The revealed character: same card as the catalog, floating in out of a soft blur
+   with a golden glow, while RevealSparkles twinkle around its picture */
+.random-page__reveal {
+  /* The sparkles are placed over the card's image */
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+  border-radius: 16px;
+  animation: reveal-pop 0.8s cubic-bezier(0.22, 1.2, 0.36, 1) both, reveal-glow 1.6s ease-out;
+}
+
+.random-page__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* A second, quieter button style for "View Details" */
+.button.button--outline {
+  border: 2px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+}
+
+.button.button--outline:hover {
+  background: var(--accent);
+  color: #fff;
+  opacity: 1;
+}
+
+@keyframes reveal-pop {
+  0% { opacity: 0; transform: translateY(16px) scale(0.7) rotate(-4deg); filter: blur(6px) brightness(1.6); }
+  60% { opacity: 1; filter: blur(0) brightness(1.15); }
+  100% { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); filter: blur(0) brightness(1); }
+}
+
+@keyframes reveal-glow {
+  0% { box-shadow: 0 0 0 0 rgba(255, 213, 79, 0.9); }
+  40% { box-shadow: 0 0 40px 12px rgba(255, 213, 79, 0.6); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 213, 79, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .random-page__reveal {
+    animation: none;
+  }
+}
+
+/* Phones: buttons full width, one under the other */
+@media (max-width: 400px) {
+  .random-page__actions {
+    flex-direction: column;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .random-page__actions .button {
+    text-align: center;
+  }
+}

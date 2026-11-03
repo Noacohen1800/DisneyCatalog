@@ -35,6 +35,46 @@ afterEach(() => {
   vi.unstubAllGlobals()
 })
 
+describe('CharacterCard opening and closing in place (onOpen / onClose)', () => {
+  const elsa: Character = { _id: 2099, name: 'Elsa', films: ['Frozen'] }
+
+  it('uses links by default, so the catalog and Favorites pages change the URL', () => {
+    renderCard(elsa)
+
+    expect(screen.getByRole('link', { name: /Elsa/ }).getAttribute('href')).toBe('/characters/2099')
+  })
+
+  it('calls onOpen instead of linking when it is given', () => {
+    const onOpen = vi.fn()
+    render(
+      <MemoryRouter>
+        <CharacterCard character={elsa} isExpanded={false} isFavorite={false} onToggleFavorite={() => {}} onOpen={onOpen} />
+      </MemoryRouter>,
+    )
+
+    expect(screen.queryByRole('link')).toBeNull()
+    fireEvent.click(screen.getByRole('button', { name: 'Show details for Elsa' }))
+    fireEvent.keyDown(screen.getByRole('button', { name: 'Show details for Elsa' }), { key: ' ' })
+
+    expect(onOpen).toHaveBeenCalledTimes(2)
+  })
+
+  it('calls onClose from ✕ instead of linking when it is given', () => {
+    Element.prototype.scrollIntoView = vi.fn()
+    const onClose = vi.fn()
+    render(
+      <MemoryRouter>
+        <CharacterCard character={elsa} isExpanded isFavorite={false} onToggleFavorite={() => {}} onClose={onClose} />
+      </MemoryRouter>,
+    )
+
+    fireEvent.click(screen.getByRole('button', { name: 'Close details' }))
+
+    expect(onClose).toHaveBeenCalledTimes(1)
+    expect(screen.queryByRole('link', { name: 'Close details' })).toBeNull()
+  })
+})
+
 describe('CharacterCard image fallback', () => {
   it('shows the Mickey placeholder when the character has no image URL', () => {
     const image = renderCard({ _id: 1, name: 'No Image Character' })

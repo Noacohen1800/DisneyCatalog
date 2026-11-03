@@ -24,6 +24,12 @@
   flex-direction: column;
   color: inherit;
   text-decoration: none;
+  cursor: pointer;
+}
+
+.character-card__link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
 }
 
 .character-card__image {
@@ -81,9 +87,14 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
+  /* Looks the same whether it is a link (catalog, favorites) or a button (Random page) */
+  padding: 0;
+  border: none;
   background: var(--image-bg);
   color: var(--text-h);
+  font: inherit;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .character-card__close:hover {

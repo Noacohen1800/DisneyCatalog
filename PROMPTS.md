@@ -591,3 +591,24 @@ Added a Favorites feature with a heart button on each character card. Users can 
 **Issue and Fix:** Initially, clicking a character in the Favorites page redirected to the Catalog to show its details. I wanted the details to open directly inside the Favorites page, just like in the Catalog. We changed the routing so cards now expand at `/favorites/:id`, added a `basePath` prop to reuse the same card components in both pages, and updated localStorage to also save films and TV shows. This allows character details to appear without making another API request. Users can also remove a favorite while its card is expanded. Added 5 more tests, bringing the total to 59 passing tests. Updated PRD.md and tasks.md.
 #############################
 
+
+**23:40 · claude**
+
+> Implement Task 7 according to tasks.md and PRD.md. Create the Random page at `/random` with a "Mystery Reveal" experience. Initially, show a mysterious character silhouette with a question mark and a "REVEAL CHARACTER" button. When clicked, play a short magical reveal animation with glowing effects and sparkles, then display a randomly selected Disney character fetched from the API. Include a "Try Again" button to reveal another character, a "View Details" link, and the ability to add/remove the character from Favorites. Reuse existing components where possible. Handle loading and error states, add meaningful Vitest tests, and make sure all existing tests pass. Update PRD.md and tasks.md if needed. Do not move on to Task 8.
+
+**23:48 · claude**
+
+> Make two improvements to Task 7:
+> 1. When clicking the revealed character, expand its details directly inside the Random page instead of navigating to the Catalog. Reuse the existing expandable card behavior and keep the user on `/random`. Make sure the card can be closed normally. 2. Add a cute reveal effect when the character appears, with sparkles, a soft golden glow, and a smooth entrance animation around the character image. Keep the existing Mystery Reveal animation and functionality unchanged. Add relevant tests, make sure all existing tests pass, and update PRD.md and tasks.md. Do not move on to Task 8.
+
+########################
+**Task 7 – Random Character Page (Mystery Reveal):**
+Created a Random page with a magical character reveal experience. Initially, users see a mysterious silhouette with a glowing question mark. Clicking "REVEAL CHARACTER" starts an animation with glowing effects and sparkles, followed by a randomly selected Disney character from the API.
+Added a "TRY AGAIN" button to reveal another character, while making sure the same character does not appear twice in a row. The revealed character can also be added to Favorites.
+**Improvements:**
+- Updated the character details behavior so clicking a character opens its details directly inside the Random page, without navigating back to the Catalog. The card can be closed while staying on the same page.
+- Added a new sparkle effect when the character appears, with a golden glow and a smooth entrance animation.
+- Reused existing components and kept the original Mystery Reveal animation unchanged.
+Added 8 new tests, bringing the total to 75 passing tests. All existing tests pass, and the build and linter are successful. Updated PRD.md and tasks.md.
+########################
+
