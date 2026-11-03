@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import CharacterGrid from '../components/CharacterGrid'
 import SearchBar from '../components/SearchBar'
+import { useFavorites } from '../hooks/useFavorites'
 import type {
   Character,
   CharacterListResponse,
@@ -26,6 +27,7 @@ function CatalogPage() {
   // On /characters/:id, "id" is the character's id from the URL. On /characters it is undefined.
   const { id } = useParams()
   const navigate = useNavigate()
+  const { isFavorite, toggleFavorite } = useFavorites()
 
   // ----- Search -----
   // What is typed in the search box right now
@@ -194,7 +196,12 @@ function CatalogPage() {
       )}
 
       {charactersToShow.length > 0 && (
-        <CharacterGrid characters={charactersToShow} expandedId={selectedCharacter?._id} />
+        <CharacterGrid
+          characters={charactersToShow}
+          expandedId={selectedCharacter?._id}
+          isFavorite={isFavorite}
+          onToggleFavorite={toggleFavorite}
+        />
       )}
 
       {listStatus === 'loading' && (

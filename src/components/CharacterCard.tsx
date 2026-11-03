@@ -3,6 +3,7 @@ import type { SyntheticEvent } from 'react'
 import { Link } from 'react-router-dom'
 import type { Character } from '../types/character'
 import CharacterDetails from './CharacterDetails'
+import FavoriteButton from './FavoriteButton'
 import './CharacterCard.css'
 
 // The Mickey silhouette shown whenever a character has no usable image
@@ -18,9 +19,19 @@ const WIKI_MISSING_IMAGE_HEIGHT = 171
 interface CharacterCardProps {
   character: Character
   isExpanded: boolean
+  isFavorite: boolean
+  onToggleFavorite: () => void
+  // The page the card belongs to: a closed card opens at basePath/<id>, and ✕ goes back to basePath
+  basePath: string
 }
 
-function CharacterCard({ character, isExpanded }: CharacterCardProps) {
+function CharacterCard({
+  character,
+  isExpanded,
+  isFavorite,
+  onToggleFavorite,
+  basePath,
+}: CharacterCardProps) {
   const cardRef = useRef<HTMLElement>(null)
 
   // When a card opens (also from a direct link), scroll it into view
@@ -68,14 +79,24 @@ function CharacterCard({ character, isExpanded }: CharacterCardProps) {
     />
   )
 
+  // The heart in the top-right corner of the image, on closed and expanded cards
+  const heart = (
+    <FavoriteButton
+      isFavorite={isFavorite}
+      onClick={onToggleFavorite}
+      characterName={character.name}
+    />
+  )
+
   if (isExpanded) {
     return (
       <article ref={cardRef} className="character-card character-card--expanded">
         {image}
+        {heart}
         <div className="character-card__body">
           <div className="character-card__header">
             <h2 className="character-card__name">{character.name}</h2>
-            <Link to="/characters" className="character-card__close" aria-label="Close details">
+            <Link to={basePath} className="character-card__close" aria-label="Close details">
               ✕
             </Link>
           </div>
@@ -86,11 +107,15 @@ function CharacterCard({ character, isExpanded }: CharacterCardProps) {
   }
 
   return (
-    // A closed card is a link that opens this character's details
-    <Link to={`/characters/${character._id}`} className="character-card">
-      {image}
-      <h2 className="character-card__name">{character.name}</h2>
-    </Link>
+    <article className="character-card">
+      {/* The image and name are a link that opens this character's details */}
+      <Link to={`${basePath}/${character._id}`} className="character-card__link">
+        {image}
+        <h2 className="character-card__name">{character.name}</h2>
+      </Link>
+      {/* The heart sits outside the link, so clicking it doesn't open the card */}
+      {heart}
+    </article>
   )
 }
 

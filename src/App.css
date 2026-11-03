@@ -52,9 +52,31 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  /* Fills the screen below the navigation bar */
+  min-height: 80vh;
   padding: 16px;
   text-align: center;
+}
+
+/* Favorites page with no favorites yet */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 48px;
+  text-align: center;
+}
+
+.empty-state__text {
+  margin: 0;
+  max-width: 420px;
+}
+
+/* A link that looks like a button */
+a.button {
+  display: inline-block;
+  text-decoration: none;
 }
 
 .not-found__title {

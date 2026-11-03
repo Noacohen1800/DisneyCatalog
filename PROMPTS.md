@@ -575,3 +575,19 @@ Set up Vitest and installed @vitest/ui, jsdom, and React Testing Library. Added 
 **Task 5 – Character Search:**
 Added a search option to the character catalog using the Disney API. The search works with uppercase and lowercase letters, removes extra spaces, and waits 400ms after typing before sending a request. It also handles cases where the API returns only one character. Fixed the Load More button so it continues loading search results instead of returning to the regular catalog. Added loading, error, and no-results messages, a clear button, and automatic closing of an open character card when starting a new search. Added 14 new tests, bringing the total to 38 passing tests. Also checked that the tests detect intentional errors and updated PRD.md and tasks.md.
 #################################
+
+**17:32 · claude**
+
+> Implement Task 6 according to `tasks.md` and `PRD.md`. Add the Favorites feature, including the ability to add and remove characters from favorites, save favorites in localStorage so they remain after refresh, and create the Favorites page with the required navigation. Place a small heart button inside a subtle circular background in the top-right corner of each character image, both when the card is closed and expanded. The heart should fill with pink/red when the character is added to favorites. Reuse existing components where possible. Add meaningful Vitest tests for the new functionality and make sure all existing tests pass. Do not move on to Task 7.
+
+**18:10 · claude**
+
+> Update the Favorites page so clicking a character card expands its details directly within the Favorites page, instead of navigating back to the catalog. Keep the same expandable card design and behavior used in the catalog, including the ability to close it. Make sure favorites can still be removed while the card is expanded, and add relevant Vitest tests. Update PRD.md and tasks.md accordingly.
+
+#############################
+**Task 6 – Favorites Feature and Improvements:**
+
+Added a Favorites feature with a heart button on each character card. Users can add and remove favorites, and their favorites are saved in localStorage so they remain after refreshing the page. Added a Favorites page and a navigation bar with Catalog, Favorites, and Random links. Added 16 new tests, bringing the total to 54 passing tests.
+**Issue and Fix:** Initially, clicking a character in the Favorites page redirected to the Catalog to show its details. I wanted the details to open directly inside the Favorites page, just like in the Catalog. We changed the routing so cards now expand at `/favorites/:id`, added a `basePath` prop to reuse the same card components in both pages, and updated localStorage to also save films and TV shows. This allows character details to appear without making another API request. Users can also remove a favorite while its card is expanded. Added 5 more tests, bringing the total to 59 passing tests. Updated PRD.md and tasks.md.
+#############################
+

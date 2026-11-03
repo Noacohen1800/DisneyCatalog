@@ -1,4 +1,8 @@
 .character-card {
+  /* The heart button is placed relative to the card's top-right corner (the image's corner) */
+  position: relative;
+  /* When the page scrolls to an expanded card, leave room for the sticky navigation bar */
+  scroll-margin-top: 72px;
   display: flex;
   flex-direction: column;
   background: var(--card-bg);
@@ -13,6 +17,13 @@
 .character-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-hover);
+}
+
+.character-card__link {
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+  text-decoration: none;
 }
 
 .character-card__image {

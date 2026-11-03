@@ -1,0 +1,48 @@
+/* A small round button that sits on the top-right corner of the character's image */
+.favorite-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  color: #6b6375;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.favorite-button:hover {
+  transform: scale(1.1);
+  background: #fff;
+}
+
+.favorite-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.favorite-button__icon {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+/* A favorite: the heart is filled with pink-red */
+.favorite-button--active {
+  color: var(--favorite);
+}
+
+.favorite-button--active .favorite-button__icon {
+  fill: currentColor;
+}

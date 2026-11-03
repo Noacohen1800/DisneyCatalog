@@ -11,7 +11,13 @@ const IMAGE_URL = 'https://static.wikia.nocookie.net/disney/images/test.png'
 function renderCard(character: Character) {
   render(
     <MemoryRouter>
-      <CharacterCard character={character} isExpanded={false} />
+      <CharacterCard
+        character={character}
+        isExpanded={false}
+        isFavorite={false}
+        onToggleFavorite={() => {}}
+        basePath="/characters"
+      />
     </MemoryRouter>,
   )
   return screen.getByRole('img', { name: character.name })

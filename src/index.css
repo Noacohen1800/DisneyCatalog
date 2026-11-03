@@ -8,6 +8,7 @@
   --border: #e3dff0;
   --accent: #5b3cc4;
   --error: #c62828;
+  --favorite: #e8336d;
   --shadow: 0 4px 12px rgba(40, 20, 90, 0.08);
   --shadow-hover: 0 10px 24px rgba(40, 20, 90, 0.16);
 
@@ -28,6 +29,7 @@
     --border: #342d4a;
     --accent: #b39dff;
     --error: #ff8a80;
+    --favorite: #ff5c8a;
     --shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
     --shadow-hover: 0 10px 24px rgba(0, 0, 0, 0.5);
   }
